@@ -1,6 +1,11 @@
-from flask import Flask, render_template #追加
+from flask import Flask, render_template, url_for, redirect #追加
 
 app = Flask(__name__, static_folder='html/static', template_folder='html/templates')
+
+@app.route('/')
+def main():
+    #return name
+    return redirect(url_for('login'))
 
 @app.route('/login.html')
 def login():
