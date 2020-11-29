@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
 </head>
 <body>
     <!-- <p id="load">Firebase SDK Loading&hellip;</p> -->
-    <!-- <input type="text" id="user_name" placeholder="ユーザー名"> -->
-    <div id ="user_name">こんにちは</div>
-    <div id ="eye_time"></div>
-    <div id ="rank"></div>
-    <input type="button" onclick="logout()" value="ログアウト">
+    <input type="text" id="user_name" placeholder="ユーザー名">
+    <input type="email" id="email" placeholder="email">
+    <input type="password" id="password" placeholder="password">
+
+    <input type="button" onclick="signup()" value="アカウント作成">
+    <a href="./login.html">ログイン画面に戻る</a>
         <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
   
@@ -23,7 +23,6 @@
         <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
         <script src="../js/firebase.js"></script>
-        <script src="../js/index.js"></script>
-    
+        <script src="../js/login.js"></script>
 </body>
 </html>
