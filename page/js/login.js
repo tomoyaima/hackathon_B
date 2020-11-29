@@ -28,6 +28,7 @@ function signup() {
             })
             .then(docRef => {
                 alert('ユーザー作成完了')
+                location.href = "./index.html";
                 // success
             }).catch(error => {
                 // error
@@ -48,7 +49,7 @@ function login() {
       .then((user_info) => {
           
         console.log('ログイン完了')
-        // console.log(user_info.user.uid)
+        location.href = "./index.html";
         alert('ログイン完了')
         
       })
@@ -57,14 +58,3 @@ function login() {
         alert('ログイン失敗')
       });
 }
-
-function logout() {
-    firebase.auth().signOut().then(() => {
-      console.log('ログアウトしました')
-      alert('ログアウトしました')
-      document.getElementById('emailVerify').innerHTML = 'ログイン後に確認します'
-    }).catch((error) => {
-      console.log('ログアウト失敗', error);
-      alert('ログアウト失敗')
-    })
-  }
