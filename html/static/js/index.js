@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log(error)
             })
         } else {
+            location.href = "./";
         }
 
     });
@@ -45,27 +46,10 @@ function logout() {
     firebase.auth().signOut().then(() => {
       console.log('ログアウトしました')
       alert('ログアウトしました')
-      location.href = "./login.html";
+      location.href = "/";
     }).catch((error) => {
       console.log('ログアウト失敗', error);
       alert('ログアウト失敗')
     })
 }
 
-
- // db.collection("users").doc(user_uid).get({ 
-    //     id: user_info.user.uid,
-    //     mail: email,
-    //     name: user,
-    //     state:0,
-    //     time:0
-    
-    // })
-    // .then(docRef => {
-    //     console.log(docRef);
-    //     // success
-    // }).catch(error => {
-    //     // error
-    //     console.log(error);
-    
-    // })
