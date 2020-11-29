@@ -28,7 +28,7 @@ function signup() {
             })
             .then(docRef => {
                 alert('ユーザー作成完了')
-                location.href = "./index.html";
+                location.href = "./";
                 // success
             }).catch(error => {
                 // error
@@ -49,7 +49,7 @@ function login() {
       .then((user_info) => {
           
         console.log('ログイン完了')
-        location.href = "./index.html";
+        location.href = "./";
         alert('ログイン完了')
         
       })
