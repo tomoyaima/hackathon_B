@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="../static/js/camera.js"></script>
     <title>Document</title>
     
 </head>
@@ -12,6 +14,12 @@
     <div id ="user_name">こんにちは</div>
     <div id ="eye_time"></div>
     <div id ="rank"></div>
+     <video id="myvideo"  width="640" height="480" autoplay playsinline></video>
+    <canvas id="videocanvas" width="640" height="480"></canvas> 
+    <img id="preview" src="{{ url_for('feed') }}" width="640" height="480"><br>
+    <button id="start">録画</button>
+    <!-- <input type="button" onclick="video()" value="録画"> -->
+
     <input type="button" onclick="logout()" value="ログアウト">
         <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
@@ -24,6 +32,6 @@
         <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
         <script src="../static/js/firebase.js"></script>
         <script src="../static/js/index.js"></script>
-    
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </body>
 </html>
