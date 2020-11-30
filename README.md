@@ -13,7 +13,7 @@ pip install python-dotenv
 ~~~
 
 ~~~
-common/libs/.envを作成
+.envを作成
 .env.sampleを参考にローカルのfirebaseの秘密鍵のパスを設定
 ~~~
 
