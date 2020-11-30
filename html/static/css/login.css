@@ -1,0 +1,35 @@
+body{
+    align-items: center;
+    text-align:center
+  
+}
+
+h1{
+    color:#4007da;
+    margin:30px;
+}
+
+input[type="email"],input[type="password"]{
+    width:300px;
+    padding:20px;
+    margin-bottom:10px;
+    border:1px solid #eee;
+    font-size: 20px;
+}
+
+input[type="button"]{
+    width:200px;
+    background:#51bafb;
+    color:#fff;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+a{
+    font-size: 20px;
+    color: black;
+}
+
+a:hover{
+    color: blue;
+}
