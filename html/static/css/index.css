@@ -1,1 +1,27 @@
-a
+body{
+    align-items: center;
+    text-align:center
+}
+
+h1{
+    color:#4007da;
+    margin:30px;
+}
+
+div{
+    font-size: 20px;
+    margin-bottom:10px;
+}
+
+input[type="button"]{
+    width:200px;
+    background:#51bafb;
+    color:#fff;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+input[type="button"]:hover{
+    background: blue;;
+}
+
