@@ -27,9 +27,13 @@ def signup():
     #return name
     return render_template("signup.html") #変更
 
-@app.route('/index.html')
-def index():
-    return render_template('index.html')
+
+
+@app.route('/index/<user_id>')
+def index(user_id):
+    # show the post with the given id, the id is an integer
+    return render_template('index.html',\
+        user_id = user_id)
 
 
 @app.route("/img", methods=["POST"])
