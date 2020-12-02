@@ -8,9 +8,12 @@ h1{
     margin:30px;
 }
 
-div{
-    font-size: 20px;
+input[type="text"],input[type="email"],input[type="password"]{
+    width:300px;
+    padding:20px;
     margin-bottom:10px;
+    border:1px solid #eee;
+    font-size: 20px;
 }
 
 input[type="button"]{
@@ -25,3 +28,11 @@ input[type="button"]:hover{
     background: blue;;
 }
 
+a{
+    font-size: 20px;
+    color: black;
+}
+
+a:hover{
+    color: blue;
+}
