@@ -17,7 +17,7 @@ users = Users()
 @app.route('/')
 def main():
     #return name
-    return redirect(url_for('login.html'))
+    return redirect(url_for('login'))
 
 @app.route('/login.html')
 def login():
