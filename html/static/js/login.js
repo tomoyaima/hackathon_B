@@ -35,6 +35,8 @@ function signup() {
             .then(docRef => {
                 alert('ユーザー作成完了')
                 location.href = `./index/${id}`;
+                console.log('ユーザー作成成功', id);
+
                 // success
             }).catch(error => {
                 // error
