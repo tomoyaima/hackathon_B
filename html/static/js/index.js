@@ -47,7 +47,7 @@ function logout() {
     firebase.auth().signOut().then(() => {
       console.log('ログアウトしました')
       alert('ログアウトしました')
-      location.href = "/";
+      location.href = "/login";
     }).catch((error) => {
       console.log('ログアウト失敗', error);
       alert('ログアウト失敗')
@@ -62,21 +62,35 @@ $(function(){
         facingMode: "environment"
       }
     };
-  
-  async function init() {
+
+  $('#start').click(async function(){
     try {
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
-      const video = document.querySelector('#myvideo');
-      const videoTracks = stream.getVideoTracks();
-      window.stream = stream; 
-      video.srcObject = stream;
-      e.target.disabled = true;
-    } catch{
-      $('#errorMsg').text('カメラの使用を許可してください');
-    }
-  }
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        const video = document.querySelector('#myvideo');
   
-  $('#start').click(init);
+        const videoTracks = stream.getVideoTracks();
+        window.stream = stream; 
+        video.srcObject = stream;
+        e.target.disabled = true;
+      } catch{
+        $('#errorMsg').text('カメラの使用を許可してください');
+      }
+
+  });
+  $('#stop').click(function(){
+    
+      
+        const video = document.querySelector('#myvideo');
+        const videoTracks = stream.getVideoTracks();
+        for (let i = 0; i < videoTracks.length; i++){
+            videoTracks[i].stop()
+          } 
+        window.stream = null; 
+        
+        e.target.disabled = false;
+  
+
+  });
   
   
   var canvas = $('#videocanvas')[0];

@@ -23,7 +23,8 @@ function signup() {
                 mail: email,
                 name: user,
                 state:0,
-                time:0
+                time:0,
+                login_count:0,
 
             })
             .then(docRef => {
@@ -47,9 +48,20 @@ function login() {
     let password = document.getElementById('password').value
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user_info) => {
-          
+        db.collection("users").doc(user_info.user.uid).update({
+            login_count: firebase.firestore.FieldValue.increment(50)
+            
+        }).then(docRef => {
+            alert('ユーザー作成完了')
+            location.href = `./index/${user_info.user.uid}`;
+            // success
+        }).catch(error => {
+            // error
+            console.log('ユーザー作成失敗', error);
+            alert('ユーザー作成失敗')
+        })
         console.log('ログイン完了')
-        location.href = `./index/${user_info.user.uid}`;
+        
         alert('ログイン完了')
         
       })
