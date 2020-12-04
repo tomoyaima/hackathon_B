@@ -1,0 +1,194 @@
+.btn {
+    padding: 2px 4px;
+    color: #FFF;
+    border-radius: 3px;
+}
+#blue_btn {
+    background: #8cfffa;
+}
+#pink_btn{
+    background: #feaec7;
+}
+#yellow_btn{
+    background: #fdaca6;
+}
+
+
+/*
+.container {
+    width: 80%;
+    margin: 15px auto;
+  }
+*/
+
+
+/*今日*/
+
+
+/*週間*/
+/*
+.title{text-align; center}
+body{background: $bg-color; color; $clolr-letter;}
+*/
+
+.box{
+    position: relative;
+    display: block;
+    border: solid 4px red;
+
+    margin-top: 4%;
+    width: 650px;
+    height: 450px;
+    background: none;
+}
+
+/*$color-letter: rgba(136,14,79,0.9);
+
+$num-10: rgba(224,247,150,1);
+$num-20: rgba(178,235,242,1);
+*/
+
+.num-bar{
+    position:absolute;
+    top: 0%;
+    left: 0%;
+    width: 1%;
+    height: 100%;
+    background-color: rgba(50,50,50,10)/*$color-letter*/;
+}
+.num-bar-10{
+    position:absolute;
+    top: 10%;
+    left: 40px;
+    width: 30px;
+    height: 90%;
+    background-color:red/* rgba(224,247,150,1)*//*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-20{
+    position:absolute;
+    top: 1%;
+    left: 82.5px;
+    width: 30px;
+    height: 100%;
+    background-color:orange/* rgba(224,247,150,1)*//*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-30{
+    position:absolute;
+    top: 1%;
+    left: 125px;
+    width: 30px;
+    height: 100%;
+    background-color:#8cfffa/* rgba(224,247,150,1)*//*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-40{
+    position:absolute;
+    top: 1%;
+    left: 165.5px;
+    width: 30px;
+    height: 100%;
+    background-color: rgba(224,247,150,1)/*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-50{
+    position:absolute;
+    top: 1%;
+    left: 210px;
+    width: 30px;
+    height: 100%;
+    background-color: rgba(224,247,150,1)/*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-60{
+    position:absolute;
+    top: 1%;
+    left: 252.5px;
+    width: 30px;
+    height: 100%;
+    background-color: rgba(224,247,150,1)/*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-70{
+    position:absolute;
+    top: 1%;
+    left: 295px;
+    width: 30px;
+    height: 100%;
+    background-color: rgba(224,247,150,1)/*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+
+/*.graph-1{
+    position: absolute;
+    top: 70%;
+    left: 5%;
+    width: 12%;
+    height: 30%;
+    background: $graph-1;
+}*/
+
+/*******************************/
+
+/*
+ul.graph li {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+}
+ 
+.bar1{
+    width: 40px;
+    height: calc(100px); calc()で計算可能
+    margin: 0 auto;
+    background-color: #cc0000;
+}
+.bar2{
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    background-color: #66cc00;
+}
+.bar3{
+    width: 40px;
+    height: 70px;
+    margin: 0 auto;
+    background-color: #0033ff;
+}
+.bar4{
+    width: 40px;
+    height: 70px;
+    margin: 0 auto;
+    background-color: #0033ff;
+}
+.bar5{
+    width: 40px;
+    height: 70px;
+    margin: 0 auto;
+    background-color: #0033ff;
+}
+.bar6{
+    width: 40px;
+    height: 70px;
+    margin: 0 auto;
+    background-color: #0033ff;
+}
+.bar7{
+    width: 40px;
+    height: 70px;
+    margin: 0 auto;
+    background-color: #0033ff;
+}
+*/
+
+
+
+/*今月*/

@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>for文サンプル2</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+<style type="text/css">
+body{font-size:16px}
+table,td { border:1px solid gray}
+td{padding:3px 0.5em}
+</style>
+</head>
+<body>
+
+<script>
+var river = new Array(
+"日本の川の長さランキング",
+"a",
+"利根川",
+"石狩川",
+"天塩川",
+"北上川"
+);
+
+document.write("<table>");
+for ( var i = 1 ; i <= 5 ; i++ ){
+  document.write("<tr><td>" + i + "位</td><td>" + river[i] + "</td></tr>")
+}
+document.write("</table>");
+</script>
+<p>（表の枠線と余白はスタイルシートで指定しています）</p>
+</body>
+</html>

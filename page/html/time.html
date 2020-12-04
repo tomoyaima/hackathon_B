@@ -1,0 +1,151 @@
+<!--
+day
+・横に書けない
+・数値
+
+week
+・横軸
+・枠を小さく出来ない
+・軸の長さ　数値受け渡し
+
+month
+・ヒートマップ
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <link rel="stylesheet" type="text/css" href="time.css" />  --> <!---元々-->
+<!--    <link rel="stylesheet" href="../static/css/time.css"> -->
+    <link rel="stylesheet" href="../css/time.css">
+<title>Document</title>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+
+<body>
+    <input type="button" class="btn" id="blue_btn" value="今日の学習時間" />
+    <input type="button" class="btn" id="pink_btn" value="今週の学習時間" />
+    <input type="button" class="btn" id="yellow_btn" value="今月の学習時間" />
+
+<!--    <div class="container">
+        <h2>Chart.js — Bar Chart Demo</h2>
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+-->
+
+
+n=4;
+<!--今日-->
+<div class="container">
+    <table>
+        <script>
+            var today_time=5;
+            document.write("<tr><th>" + "今日の学習時間" + "</th><th>"  +today_time+ "</th><th>" +"時間"  + "</th></tr>");
+        </script>
+    </table>
+</div>
+
+<!--
+document.write("<table>");
+    <script>
+    <table>
+    document.write("<tr><th>" + "順位" + "</th><th>"  +"ID"+ "</th><th>" +"point"  + "</th></tr>");
+</table>
+</script>
+document.write("</table>");
+
+<h2 class="title"> 今日の学習時間 </h2>
+<h3 class="title"> n </h3>
+<h3 class="title"> 時間 </h3>
+-->
+
+
+<!--今週-->
+<h2 class="title"> 今週の学習時間 </h2>
+
+<div class="box">
+    <div class="num-bar">
+        <div class="num-bar-10"></div>
+        <div class="num-bar-20"></div>
+        <div class="num-bar-30"></div>
+        <div class="num-bar-40"></div>
+        <div class="num-bar-50"></div>
+        <div class="num-bar-60"></div>
+        <div class="num-bar-70"></div>
+    </div>
+
+<!--    <div class="graph-1"></div>
+    <div class="graph-2"></div>
+    <div class="graph-3"></div>
+    <div class="graph-4"></div>
+    <div class="graph-5"></div>
+    <div class="graph-6"></div>
+    <div class="graph-7"></div>
+
+    <div class="line-0"></div>
+    <div class="line-10"></div>
+    <div class="line-20"></div>
+    <div class="line-30"></div>
+    <div class="line-40"></div>
+-->
+
+</div>
+
+
+<!----->
+<h4>    8 7 6 5 4 3 2 1 0</h4>
+
+<!--
+<li>
+    <div class="bar"></div>
+    <h4>    8 7 6 5 4 3 2 1 0</h4>
+</li>
+-->
+
+<!--<ul class="graph">-->
+<ul class="graph">
+<!--    <li>
+        <div class="bar"></div>-->
+        <h3>    Sun  Mon  Tue  Wed  Thu  Fri Sat</h3>
+<!--    </li>-->
+<!--    <li>
+        <div class="bar"></div>
+        <p>月曜</p>
+    </li>
+    <li>
+        <div class="bar"></div>
+        <p>火曜</p>
+    </li>
+    <li>
+        <div class="bar"></div>
+        <p>水曜</p>
+    </li>
+    <li>
+        <div class="bar"></div>
+        <p>木曜</p>
+    </li>
+    <li>
+        <div class="bar"></div>
+        <p>金曜</p>
+    </li>
+    <li>
+        <div class="bar"></div>
+        <p>土曜</p>
+    </li>
+-->
+</ul>
+<!--</ul>-->
+
+
+<!--今月-->
+<h2 class="title"> 今月の学習時間 </h2>
+
+
+</body>
+</html>
