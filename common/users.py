@@ -7,6 +7,7 @@ class User:
         self.JST_ = timezone(timedelta(hours=+9), 'JST')
         self.start_t_ = 0
         self.watching = False
+        self.detector_ = SightDetector()
 
     def start_watching(self):
         """Userが画面を見始めたらスタート時刻を記録"""
@@ -22,6 +23,10 @@ class User:
 
     def record_watching_time(self):
         document_update(self.id_, self.start_t_, datetime.now(self.JST_))
+
+    def img_process(self, img):
+        self.detector_.detect(img)
+        self.detector_.print_debug()
 
 
 class Users:

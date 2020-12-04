@@ -9,3 +9,5 @@ from dotenv import load_dotenv
 load_dotenv()
 
 FIREBASE_KEY = os.environ.get('FIREBASE_KEY')
+FACE_CASCADE_PATH = os.environ.get('FACE_CASCADE_PATH')
+EYE_CASCADE_PATH = os.environ.get('EYE_CASCADE_PATH')
