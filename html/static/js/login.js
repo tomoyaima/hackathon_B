@@ -4,7 +4,10 @@ const db = firebase.firestore();
 // const firebaseConfig = {
 //     /* firebase config */
 // }
-
+const time={
+    start:0,
+    end:0
+}
 // 初期化は一度だけ
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
@@ -25,6 +28,8 @@ function signup() {
                 state:0,
                 time:0,
                 login_count:0,
+                time:time
+
 
             })
             .then(docRef => {
@@ -48,23 +53,23 @@ function login() {
     let password = document.getElementById('password').value
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user_info) => {
-        db.collection("users").doc(user_info.user.uid).update({
-            login_count: firebase.firestore.FieldValue.increment(50)
+            console.log(user_info.user.uid);
+            db.collection("users").doc(user_info.user.uid).update({
+                login_count: firebase.firestore.FieldValue.increment(1)
+                
+            }).then(docRef => {
+
+                console.log('ログイン完了')
             
-        }).then(docRef => {
-            alert('ユーザー作成完了')
-            location.href = `./index/${user_info.user.uid}`;
-            // success
-        }).catch(error => {
-            // error
-            console.log('ユーザー作成失敗', error);
-            alert('ユーザー作成失敗')
+                alert('ログイン完了')
+                location.href = `./index/${user_info.user.uid}`;
+                // success
+            }).catch(error => {
+                // error
+                console.log('ログイン失敗', error);
+                alert('ログイン失敗')
+            })
         })
-        console.log('ログイン完了')
-        
-        alert('ログイン完了')
-        
-      })
       .catch((error) => {
         console.log('ログイン失敗', error);
         alert('ログイン失敗')
