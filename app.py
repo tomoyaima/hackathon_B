@@ -36,19 +36,20 @@ def index(user_id):
         user_id = user_id)
 
 
-@app.route("/img", methods=["POST"])
-def img():
+@app.route('/img/<user_id>', methods=["POST"])
+def img(user_id):
     #画像処理部分
+    print(user_id)
     img = request.files["video"].read()
-    
+    print("a")
     # pillow から opencvに変換
     imgPIL = Image.open(io.BytesIO(img))
     imgCV = np.asarray(imgPIL)
 
-    imgCV = cv2.bitwise_not(imgCV)
-    cv2.imwrite('./test.jpg', imgCV)
+    # imgCV = cv2.bitwise_not(imgCV)
+    cv2.imwrite("./test.jpg", imgCV)
 
-    print("aa")
+  
     # 好きな処理を入れる
 
     return "success"
