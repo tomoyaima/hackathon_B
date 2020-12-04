@@ -8,9 +8,11 @@ from PIL import Image
 import numpy as np
 import cv2
 import io
+from common.users import Users
 
 
 app = Flask(__name__, static_folder='html/static', template_folder='html/templates')
+users = Users()
 
 @app.route('/')
 def main():
@@ -27,11 +29,11 @@ def signup():
     #return name
     return render_template("signup.html") #変更
 
-
-
 @app.route('/index/<user_id>')
 def index(user_id):
     # show the post with the given id, the id is an integer
+    users.add_login_user(user_id) #追加
+
     return render_template('index.html',\
         user_id = user_id)
 
@@ -39,18 +41,18 @@ def index(user_id):
 @app.route('/img/<user_id>', methods=["POST"])
 def img(user_id):
     #画像処理部分
-    print(user_id)
+
+    # どのユーザーの画像か
+    user = users.get_user(user_id) #追加
     img = request.files["video"].read()
-    print("a")
+
     # pillow から opencvに変換
     imgPIL = Image.open(io.BytesIO(img))
     imgCV = np.asarray(imgPIL)
-
     # imgCV = cv2.bitwise_not(imgCV)
-    cv2.imwrite("./test.jpg", imgCV)
+    # cv2.imwrite('./test.jpg', imgCV)
 
-  
-    # 好きな処理を入れる
+    user.img_process(imgCV) #追加
 
     return "success"
 
