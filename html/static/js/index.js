@@ -7,7 +7,7 @@ let rank = document.getElementById('rank')
 let login_count = document.getElementById('login_count')
 let user_uid
 let user_info = []
-
+let time =0
 
 // const firebaseConfig = {
 //     /* firebase config */
@@ -27,9 +27,13 @@ document.addEventListener('DOMContentLoaded', function () {
             db.collection("users").doc((user_uid)).get().then((docs) => {
            
                 if (docs.exists) {
+                    
                     user_info=docs.data();
+                  
+                    // time.foreach(user_info.time[end]-user_info.time[start])
+                    
                     user_name.innerHTML = "こんにちは"+user_info.name+"さん"
-                    eye_time.innerHTML = "視聴時間："+user_info.time+"時間"
+                    eye_time.innerHTML = "視聴時間："+time+"時間"
                     rank.innerHTML = "ランキング："+user_info.state+"位"
                     login_count.innerHTML = "ログイン回数："+user_info.login_count+"回"
 

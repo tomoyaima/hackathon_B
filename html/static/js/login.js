@@ -26,7 +26,7 @@ function signup() {
                 mail: email,
                 name: user,
                 state:0,
-                time:0,
+            
                 login_count:0,
                 time:time
 
@@ -34,8 +34,8 @@ function signup() {
             })
             .then(docRef => {
                 alert('ユーザー作成完了')
-                location.href = `./index/${id}`;
-                console.log('ユーザー作成成功', id);
+                location.href = `./index/${user_info.user.uid}`;
+                console.log('ユーザー作成成功', user_info.user.uid);
 
                 // success
             }).catch(error => {
