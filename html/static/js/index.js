@@ -4,6 +4,7 @@ const db = firebase.firestore();
 let user_name = document.getElementById('user_name')
 let eye_time = document.getElementById('eye_time')
 let rank = document.getElementById('rank')
+let login_count = document.getElementById('login_count')
 let user_uid
 let user_info = []
 
@@ -30,12 +31,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     user_name.innerHTML = "こんにちは"+user_info.name+"さん"
                     eye_time.innerHTML = "視聴時間："+user_info.time+"時間"
                     rank.innerHTML = "ランキング："+user_info.state+"位"
+                    login_count.innerHTML = "ログイン回数："+user_info.login_count+"回"
+
                 }
             }).catch(error => {
                 console.log(error)
             })
         } else {
-            location.href = "./";
+            location.href = "/login.html";
         }
 
     });
