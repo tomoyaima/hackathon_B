@@ -32,7 +32,7 @@ def signup():
 @app.route('/index/<user_id>')
 def index(user_id):
     # show the post with the given id, the id is an integer
-    users.add_login_user(id) #追加
+    users.add_login_user(user_id) #追加
 
     return render_template('index.html',\
         user_id = user_id)

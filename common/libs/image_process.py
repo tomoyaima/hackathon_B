@@ -93,33 +93,21 @@ class SightDetector:
         if self.count_ == int(self.angry_time / self.frame_rate) :
             self.angry_count_ +=1
             if self.angry_count_ >= self.mad_count:
-                # mixer.init()        #初期化
-                # mixer.music.load("C:/Users/ME_PC_2020/Desktop/Hackathon/_game_swordman-death1.mp3")
-                # mixer.music.play(1) 
                 print("Death!!!")
                 self.angry_count_ = 0
                 self.count_ = 0
             elif self.angry_count_ < self.mad_count:
-                # mixer.init()        #初期化
-                # mixer.music.load("C:/Users/ME_PC_2020/Desktop/Hackathon/line-girl1-kaatsu1.mp3")
-                # mixer.music.play(1)
                 print('コラ')
                 self.count_ = 0
         
         for x, y, w, h in faces:
             self.face_count_ +=1 
-    #         print(tracking_start_time) 
             cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
             face = img[y: y + h, x: x + w]
             face_gray = gray[y: y + h, x: x + w]
             eyes = self.eye_cascade_.detectMultiScale(face_gray)
             for (ex, ey, ew, eh) in eyes:
                 cv2.rectangle(face, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
-        
-    #     if try_count == 900:
-    #         pulse = pulse_de(X1)
-    #         plt.plot(pulse)
-    #         plt.show()
 
             roi = img[y: y+h, x:x+w]
             rgb = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
@@ -131,29 +119,11 @@ class SightDetector:
                 self.X1_ = np.array([mean_r1, mean_g1, mean_b1])
             else:
                 self.X1_ = np.vstack((self.X1_, np.array([mean_r1, mean_g1, mean_b1])))
-                
             # cv2.imshow('video image', img)
 
-        # pulse = self.pulse_de(self.X1_)
-        # plt.plot(pulse)
-        # plt.show()
         self.rec_time_ = time.time() - self.start_time_
         self.all_tracking_time_ = (self.face_count_/self.try_count_)*self.rec_time_
-        if self.all_tracking_time_ < 10:
-            pass
-            # mixer.init()        #初期化
-            # mixer.music.load("C:/Users/ME_PC_2020/Desktop/Hackathon/line-girl1-sonotyoushisonotyousi1.mp3")
-            # mixer.music.play(1)
-        elif self.all_tracking_time_ < 20:
-            pass
-            # mixer.init()        #初期化
-            # mixer.music.load("C:/Users/ME_PC_2020/Desktop/Hackathon/people-stadium-cheer1.mp3")
-            # mixer.music.play(1)
-        elif self.all_tracking_time_ > 20:
-            pass
-            # mixer.init()        #初期化
-            # mixer.music.load("C:/Users/ME_PC_2020/Desktop/Hackathon/people-studio-kyaa1.mp3")
-            # mixer.music.play(1)
+
 
     def get_palse(self):
         pulse = self.pulse_de(self.X1_)
