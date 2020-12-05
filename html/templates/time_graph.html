@@ -74,6 +74,7 @@
             
             const summaryData = days.map(x =>
                 margedData
+//                    y.date /= 60
                     .filter(y => dateFns.isSameDay(x, y.date))
                     .reduce((a, b) => a + b.second, 0)
             );
@@ -96,8 +97,30 @@
                 options: {
                     legend:{
                         display:false
+                    },
+                    scales:{
+                        xAxes:[{
+                            scaleLabel:{
+                                display: true,
+                                labelString: "日付",
+                                fontColor: '#000',
+                                fontSize: 20
+                            }
+                        }],
+                        yAxes:[{
+                            scaleLabel:{
+                                display: true,
+                                labelString: "学習時間",
+                                fontColor: '#000',
+                                fontSize: 20
+                            },
+                            ticks: {
+                                suggesteMin : 0,
+                            }
+                        }]
                     }
                 }
+                
             }) // オプション
                     
         } else {
