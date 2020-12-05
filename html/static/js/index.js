@@ -9,6 +9,7 @@ let user_uid
 let user_info = []
 let time =0
 let interval_id =null;
+
 // let stream = null;
 
 // const firebaseConfig = {
@@ -31,11 +32,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (docs.exists) {
                     
                     user_info=docs.data();
-                  
+                    let time=0;
+                    let total_time=0;
+                    console.log(user_info.time)
                     // time.foreach(user_info.time[end]-user_info.time[start])
-                    
+                    for(let i=0;i<user_info.time.start.length;i++){
+                      time= user_info.time.end[i].seconds - user_info.time.start[i].seconds
+                      console.log(time)
+                      total_time +=time 
+                    }
+                    console.log(user_info.time)
                     user_name.innerHTML = "こんにちは"+user_info.name+"さん"
-                    eye_time.innerHTML = "視聴時間："+time+"時間"
+                    eye_time.innerHTML = "視聴時間："+total_time+"秒"
                     rank.innerHTML = "ランキング："+user_info.state+"位"
                     login_count.innerHTML = "ログイン回数："+user_info.login_count+"回"
 
@@ -97,6 +105,8 @@ $(function(){
             videoTracks[i].stop()
           } 
         window.stream = null; 
+        location.href = `/stop/${user_uid}`;
+        alert('頑張ったね')
         // e.target.disabled = false;
        
   });
@@ -123,7 +133,7 @@ $(function(){
         
         fd.set('video', blob);
         // fd.set('watching', true);
-        console.log(blob)
+        // console.log(blob)
         
         $.ajax({
             url: `/img/${user_uid}`,
@@ -144,7 +154,16 @@ $(function(){
       });
   });
   
+  const userId = "js-primer-example";
+  fetch(`img/${user_uid}`)
+      .then(response => {
+          console.log(response.status); // => 200
+          return response.json().then(userInfo => {
+              // JSONパースされたオブジェクトが渡される
 
+              console.log(userInfo); // => {...}
+          });
+      });
 
 // function video() {
 //     //動画流す準備

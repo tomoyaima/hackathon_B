@@ -19,6 +19,12 @@ def main():
     #return name
     return redirect(url_for('login'))
 
+@app.route('/stop/<user_id>')
+def stop(user_id):
+    #return name
+    print("aa")
+    return redirect(url_for("index",\
+        user_id = user_id))
 
 @app.route('/rank/<user_id>')
 def rank(user_id):
