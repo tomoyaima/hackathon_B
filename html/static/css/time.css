@@ -14,19 +14,22 @@
 }
 
 
+  
+/* 共通設定 */
+.child {
+color: #fff;
+text-align: center;
+line-height: 100px;
+width: 500px;
+height: 100px;
+background-color: #777;
+}
 
 
-/*今日*/
+.child {
+    display: inline;
+}
 
-
-/*週間*/
-/*
-.title{text-align; center}
-body{background: $bg-color; color; $clolr-letter;}
-*/
-
-
-/*横軸*/
 .num12{
     position:absolute;
     top:100px; left:10px;
@@ -57,23 +60,23 @@ body{background: $bg-color; color; $clolr-letter;}
 }
 .date2{
     position:absolute;
-    top:30px; left:50px;
+    top:30px; left:150px;
 }
 .date3{
     position:absolute;
-    top:30px; left:100px;
+    top:30px; left:200px;
 }
 .date4{
     position:absolute;
-    top:30px; left:50px;
+    top:30px; left:250px;
 }
 .date5{
     position:absolute;
-    top:30px; left:100px;
+    top:30px; left:300px;
 }
 .date6{
     position:absolute;
-    top:30px; left:50px;
+    top:30px; left:350px;
 }
 
 
