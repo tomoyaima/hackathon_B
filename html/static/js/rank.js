@@ -51,3 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
+function logout() {
+  firebase.auth().signOut().then(() => {
+    console.log('ログアウトしました')
+    alert('ログアウトしました')
+    location.href = "/login";
+  }).catch((error) => {
+    console.log('ログアウト失敗', error);
+    alert('ログアウト失敗')
+  })
+}

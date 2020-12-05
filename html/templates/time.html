@@ -8,18 +8,31 @@
     <link rel="stylesheet" href="../static/css/time.css">
     <!-- <script src="../static/js/time.js"></script> -->
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="../static/js/time.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+    <script src="../static/js/firebase.js"></script>
+    <!-- <script src="../js/time.js"></script> -->
 </head>
+
+
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    
-    
-    <input type="button" class="btn" id="blue_btn" value="今日の学習時間" />
-    <input type="button" class="btn" id="pink_btn" value="今週の学習時間" />
-    <input type="button" class="btn" id="yellow_btn" value="今月の学習時間" />
+
+    <!-- <div class="container">
+        <table>
+            <script>
+                document.write("<tr><th>" + "今日の学習時間" + "</th><th></th><th>" +"時間"  + "</th></tr>");
+            </script>
+        </table>
+    </div> -->
 
 
-
-    
     <div class="container">
         <table>
             <script>
@@ -29,17 +42,9 @@
         </table>
     </div>
 
-
-
     <!--今週-->
-    <div class="week">
+<!--    <div class="week">
         <h2 class="title"> 今週の学習時間 </h2>
-
-        <!--.clear{
-            clear: both;
-            background-color: #fere;
-        }-->
-
 
         <div class="num12">
             <h4>12</h4>
@@ -56,8 +61,8 @@
         <div class="num0">
             <h4>0</h4>
 
-        <div id="date0" class="date0">日付</div>
-        <!-- <div id="date1" class="date1">
+        <div id="date0" class="date0">day</div>
+-->        <!-- <div id="date1" class="date1">
             <h4>date_1</h4>
         </div>
         <div id="date2" class="date2">
@@ -74,8 +79,8 @@
         </div> -->
 
 
-        <div class="box">
-        <!--    padding: 3px 10px;-->
+        <!-- <div class="box">
+            padding: 3px 10px;
             <div class="num-bar">
                 <div class="num-bar-0"></div>
                 <div class="num-bar-1"></div>
@@ -85,22 +90,130 @@
                 <div class="num-bar-5"></div>
                 <div class="num-bar-6"></div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <!--今月-->
-        <script src="../static/js/time.js"></script>
-        <h2 class="title"> 今月の学習時間 </h2>
-        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
-            
-        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
-
-        <!-- Add Firebase products that you want to use -->
-        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
-        <script src="../js/firebase.js"></script>
-        <!-- <script src="../js/time.js"></script> -->
-
+<!--        <h2 class="title"> 今月の学習時間 </h2> -->
     </body>
+
+
+
+<!--ライブラリ読み込み -->
+<script src="js/time.js"></script>
+
+<!--描画箇所 -->
+<canvas id="lineChartCanvas" height="450" width="600"></canvas>
+
+<!--凡例箇所 -->
+<ul id="chart_legend"></ul>
+
+
+
+<!DOCTYPE html>
+<!--<html lang="ja">-->
+<head>
+  <title>Chart.js TEST</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h1>Chart.jsのテスト</h1>
+
+  <!-- <div style="width: 50%">
+    <canvas id="chart" height="450" width="600"></canvas>
+  </div> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+  <!-- もしくは<script src="Chart.min.js"></script> -->
+  <script>
+    // ここにChart.jsの処理を記述
+  </script>
+<!--</html>-->
+
+
+
+
+
+<script type="text/javascript"
+ src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js">
+</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.min.js"
+    integrity="sha512-F+u8eWHrfY8Xw9BLzZ8rG/0wIvs0y+JyRJrXjp3VjtFPylAEEGwKbua5Ip/oiVhaTDaDs4eU2Xtsxjs/9ag2bQ=="
+    crossorigin="anonymous">
+</script>
+
+<canvas id="chart_cv"></canvas>
+
+<script type="text/javascript">
+    const db = firebase.firestore();
+    let summary ={};
+    let day_k
+    firebase.auth().onAuthStateChanged(async function(user) {
+    
+     if (user) {
+        // var id = "yjQN0JHMakauDOnDjUsElpSaBkB2"
+        console.log(user.uid)
+
+        var docRef = db.collection("users").doc(user.uid)
+        const doc = await docRef.get();
+        const docData = doc.data();
+        // console.log(docData);
+        
+        const start = docData.time.start;
+        const end = docData.time.end;
+        const startDates = start.map(x => x.toDate())
+        const endDates = end.map(x => x.toDate())
+
+        // console.log(startDates);
+        // console.log(endDates);
+
+        const margedData = [];
+        startDates.forEach((x, i) => {
+            margedData.push({
+                date: x,
+                second: dateFns.differenceInSeconds(endDates[i], startDates[i]),
+            })
+        });
+        
+        console.log(margedData);
+
+        const days = dateFns.eachDay(dateFns.addDays(new Date(), -6), new Date())
+        
+        console.log(days);
+        
+        const summaryData = days.map(x =>
+            margedData
+                .filter(y => dateFns.isSameDay(x, y.date))
+                .reduce((a, b) => a + b.second, 0)
+        );
+        
+        console.log(summaryData);
+        
+        const graphData = {
+            labels: days.map(x => dateFns.format(x, 'YYYY-MM-DD')),
+            datasets: [{
+            label: '',
+            data: summaryData,
+            backgroundColor: ['red','blue','yellow','green','silver','green','silver']
+        }]}
+
+        // グラフを描画 --- (*2)
+        const ctx = document.getElementById('chart_cv')
+        const chart_cv = new Chart(ctx, {
+            type: 'bar', // グラフの種類
+            data: graphData, // データ
+            options: {}
+        }) // オプション
+                
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }}
+    )
+</script>
+
+
+</body>
+
 </html>

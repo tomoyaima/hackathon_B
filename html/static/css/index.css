@@ -131,3 +131,9 @@ input[type="button"]:hover{
    height: auto;
  }
 
+ #videocanvas{
+    display: none;
+}
+#preview{
+    display: none;
+}
