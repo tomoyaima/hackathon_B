@@ -1,38 +1,104 @@
- * {
-    box-sizing: border-box;
- }
- body {
-    margin: 0;
-    padding: 0;
-    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #e6e6e6;
- }
- header {
-    padding: 30px 4% 10px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
- }
- h1 {
-    margin: 0; padding: 0;
-    font-size: 20px;
- }
- a {	
-    text-decoration: none;
-    color: #4b4b4b;
- }
- nav {
-    margin: 0 0 0 auto;
- }
- ul {
-    list-style: none;
-    margin: 0;
-    display: flex;
- }
- li {
-    margin: 0 0 0 15px;
-    font-size: 14px;
- }
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   padding: 0;
+   font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   background-image: url("../image/mori.jpg");
+   height: 500px;
+}
+header {
+   padding: 30px 4% 10px;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   background-color: #fff;
+   display: flex;
+   align-items: center;
+}
+h1 {
+   margin: 0; padding: 0;
+   font-size: 20px;
+}
+a {	
+   text-decoration: none;
+   color: #4b4b4b;
+}
+nav {
+   margin: 0 0 0 auto;
+}
+ul {
+   list-style: none;
+   margin: 0;
+   display: flex;
+}
+li {
+   margin: 0 0 0 15px;
+   font-size: 14px;
+}
+
+.navi {
+  position: relative;
+  display: inline-block;
+  
+  margin: 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+  top: 80px;
+  left: 350px;
+}
+
+.navi:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-top: 15px solid #e0edff;
+}
+
+.button{
+   text-align: center;
+   top:40px;
+   position: relative;
+}
+
+button{
+   width:200px;
+   background:#51bafb;
+   color:#fff;
+   font-size: 20px;
+   margin-bottom: 10px;
+}
+
+button:hover{
+   background: blue;;
+}
+
+main{
+  background-image: url("../image/mori.jpg");
+}
+
+.camera{
+    top:10px;
+    position:relative;
+}
+
+input[type="button"]{
+   width:150px;
+   background:#51bafb;
+   color:#fff;
+   font-size: 20px;
+   margin-bottom: 10px;
+}
+
+input[type="button"]:hover{
+   background: blue;;
+}
