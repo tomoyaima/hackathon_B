@@ -8,25 +8,24 @@ body {
    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
    background-image: url("../image/mori.jpg");
    height: 500px;
-
 }
 header {
    padding: 30px 4% 10px;
    position: fixed;
    top: 0;
    width: 100%;
-   background-color: #fff;
+   background-color:  #d24545;;
    display: flex;
    align-items: center;
-   z-index: 2;
+   z-index:100;
 }
 h1 {
    margin: 0; padding: 0;
    font-size: 20px;
 }
-a {	
+a {   
    text-decoration: none;
-   color: #4b4b4b;
+   color: white;
 }
 nav {
    margin: 0 0 0 auto;
@@ -44,33 +43,38 @@ li {
 .navi {
   position: relative;
   display: inline-block;
-  
-  margin: 1.5em 0;
+  /* margin: 1.5em 0; */
   padding: 7px 10px;
   min-width: 120px;
   max-width: 100%;
   color: #555;
   font-size: 16px;
-  background: #e0edff;
-  top: 80px;
-  left: 350px;
+  background: #fff;
+  border: solid 3px #555;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 
-.navi:before {
+.navi:after {
   content: "";
   position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -15px;
-  border: 15px solid transparent;
-  border-top: 15px solid #e0edff;
+  top: 50%;
+  right: -30px;
+  margin-top: -14px;
+  border: 14px solid transparent;
+  border-left: 14px solid #555;
+  z-index: 1;
+}
+
+.navi p {
+  margin: 10px;
+  padding: 0;
 }
 
 .button{
    text-align: center;
    top:40px;
    position: relative;
-   z-index: 1;
 }
 
 button{
@@ -105,9 +109,25 @@ input[type="button"]{
 input[type="button"]:hover{
    background: blue;;
 }
-#videocanvas{
-    display: none;
-}
-#preview{
-    display: none;
-}
+
+.talk {
+   width: 100%;
+   margin: 10px 0;
+   overflow: hidden;
+ }
+ 
+ .talk .icon {
+   /* float: right; */
+   margin-left: 300px;
+   margin-top: -160px;
+   width: 40px;
+   /* position:absolute;
+   top:140px;
+   left:65% */
+ }
+ 
+ .talk .icon img{
+   width: 500%;
+   height: auto;
+ }
+
