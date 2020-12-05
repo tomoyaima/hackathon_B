@@ -8,9 +8,16 @@ let login_count = document.getElementById('login_count')
 let user_uid
 let user_info = []
 let time =0
+
 let interval_id =null;
 // let time=0;
 let total_time=0;
+// const bgm1 = document.querySelector("#bgm1");    
+
+// var myAudioURL = chrome.extension.getURL("../music/angry.mp3");
+// オーディオファイルの読み込み
+// audioElm.src = myAudioURL;
+// audioElm.load();
 // let stream = null;
 
 // const firebaseConfig = {
@@ -96,9 +103,14 @@ $(function(){
         facingMode: "environment"
       }
     };
-
+    let audiostart = new Audio();
+    let audioend = new Audio();
+   
   $('#start').click(async function(){
     try {
+      
+      audiostart.src = "../static/music/start_up.mp3";
+      audiostart.play(); // 再生v
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         const video = document.querySelector('#myvideo');
   
@@ -106,13 +118,17 @@ $(function(){
         window.stream = stream; 
         video.srcObject = stream;
         e.target.disabled = true;
+       
       } catch{
         $('#errorMsg').text('カメラの使用を許可してください');
       }
 
   });
+
   $('#stop').click(function(){
-      
+    audioend.src = "../static/music/end.mp3";
+    audioend.play(); // 再生v
+    
         clearInterval(interval_id);
         // stream = navigator.mediaDevices.getUserMedia(constraints);
         interval_id = null;
@@ -121,13 +137,21 @@ $(function(){
         for (let i = 0; i < videoTracks.length; i++){
             videoTracks[i].stop()
           } 
+      
         window.stream = null; 
-        location.href = `/stop/${user_uid}`;
-        alert('頑張ったね')
-        // e.target.disabled = false;
+        
+        
+   
+        
+       // e.target.disabled = false;
        
   });
-  
+
+
+  audioend.addEventListener("ended", function () {
+    alert("おつかれさまです")
+     location.href = `/stop/${user_uid}`;
+  }, false);
   
   var canvas = $('#videocanvas')[0];
   
@@ -161,7 +185,14 @@ $(function(){
             dataType: "text",
         })
         .done(function(data){
-            console.log(data);
+          originalData = JSON.parse(data);
+        
+            // console.log(data.watching);
+            if(originalData.caution>=1){
+              console.log("音声");
+              audiostart.src = "../static/music/angry.mp3";
+              audiostart.play(); // 再生v
+            }
         })
         .fail(function(data){
             console.log(data);

@@ -7,6 +7,7 @@ let table = document.getElementById("container")
 
 let table_tr="<table id = 'container'><tr><th>" + "順位" + "</th><th>"  + "名前" + "</th><th>" + "時間(秒)"  + "</th></tr>"
 let i=0
+
 // let stream = null;
 
 // const firebaseConfig = {
@@ -19,12 +20,15 @@ if (!firebase.apps.length) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-
+  // let audiostart = new Audio();
+  //   audiostart.src = "../static/music/ranking1.mp3";
+  //   audiostart.play(); // 再生v
     firebase.auth().onAuthStateChanged(function(user) {
      
         if (user) {
             user_uid = user.uid
             db.collection("users").orderBy("total_time","desc").get().then((docs) => {
+             
               let time=0;
               let minute=0;
               let seconds=0;
@@ -40,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
               table_tr+="</table>"
               console.log(table_tr)
               table.innerHTML =table_tr
+              
+             
         
             }).catch(error => {
                 console.log(error)
@@ -49,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
     });
+   
 
 });
 
