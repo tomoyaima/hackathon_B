@@ -1,3 +1,4 @@
+/*
 .btn {
     padding: 2px 4px;
     color: #FFF;
@@ -12,8 +13,9 @@
 #yellow_btn{
     background: #fdaca6;
 }
+*/
 
-
+​
   
 /* 共通設定 */
 .child {
@@ -24,12 +26,25 @@ width: 500px;
 height: 100px;
 background-color: #777;
 }
-
-
+​
+​
 .child {
     display: inline;
 }
 
+
+
+/*今日*/
+
+
+/*週間*/
+/*
+.title{text-align; center}
+body{background: $bg-color; color; $clolr-letter;}
+*/
+
+
+/*横軸*/
 .num12{
     position:absolute;
     top:100px; left:10px;
@@ -60,23 +75,23 @@ background-color: #777;
 }
 .date2{
     position:absolute;
-    top:30px; left:150px;
+    top:30px; left:50px;
 }
 .date3{
     position:absolute;
-    top:30px; left:200px;
+    top:30px; left:100px;
 }
 .date4{
     position:absolute;
-    top:30px; left:250px;
+    top:30px; left:50px;
 }
 .date5{
     position:absolute;
-    top:30px; left:300px;
+    top:30px; left:100px;
 }
 .date6{
     position:absolute;
-    top:30px; left:350px;
+    top:30px; left:50px;
 }
 
 
@@ -87,7 +102,7 @@ background-color: #777;
     border: solid 4px blue;
 
 /*    margin-top: 4%;*/
-    width: 650px;
+    width: 350px;
     height: 400px;
     background: none;
     top:-370px; left:25px;
@@ -107,17 +122,20 @@ background-color: #777;
 }
 .num-bar-0{
     position:absolute;
-    top: 10%;
+/*    top: calc(100px + 400px*(1 - attr(eye_time) / 12) );*/
+/*    top: calc(100px + 400px*(1 - var(eye_time) / 12) );*/
+    
+    top: 0px;
     left: 40px;
     width: 30px;
-    height: 90%;
-    background-color:red/* rgba(224,247,150,1)*//*$num-10*/;
-
+/*    height: calc(100px/100*eye_time);*/
+    height: 400px;
+    background-color:red;
     animation: graph-1 3s -1;
 }
 .num-bar-1{
     position:absolute;
-    top: 1%;
+    top: 0%;
     left: 82.5px;
     width: 30px;
     height: 100%;
@@ -170,8 +188,26 @@ background-color: #777;
     top: 1%;
     left: 295px;
     width: 30px;
-    height: 100%;
+    height: 50%;
     background-color: rgba(224,247,150,1)/*$num-10*/;
 
     animation: graph-1 3s -1;
 }
+
+
+/*******************************/
+
+
+
+/*今月*/
+.month{
+    top: 1000px;
+    left: 295px;
+    width: 100px;
+    height: 100%;
+
+    background-color:color;
+}
+
+
+/****************************************************************************************/
