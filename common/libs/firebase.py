@@ -11,17 +11,23 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 def document_set(id, name):
-    """usersコレクションへデータ追加・上書き"""
+    """usersコレクションへデータ追加"""
     doc_ref = db.collection(u'users').document(id)
-    doc_ref.set({
-        u'id'  : id,
-        u'mail': u'hogehoge@hoge.com',
-        u'name': name,
-        u'time': {
-            u'start': [],
-            u'end'  : [],
-        }
-    })
+    try:
+        doc = doc_ref.get().to_dict()
+        doc_ref.update({
+            # u'id'           : doc['id'],
+            # u'login_count'  : doc['login_count'],
+            # u'mail'         : doc['mail'],
+            # u'name'         : doc['name'],
+            # u'state'        : doc['state'],
+            u'time': {
+                u'start': [],
+                u'end'  : [],
+            }
+        })
+    except google.cloud.exceptions.NotFound:
+        print('No such document!')
     return
 
 def document_update(id, start_t, end_t):

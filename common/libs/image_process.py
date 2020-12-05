@@ -18,7 +18,8 @@ class SightDetector:
         self.fupper_ = 3
         self.start_time_ = time.time()
         self.rec_time_ = 0
-        self.count_ = 0
+        self.noeye_count_ = 0
+        self.eye_count_ = 0
         self.face_count_ = 0
         self.try_count_ = 0
         self.all_tracking_time_ = 0
@@ -28,6 +29,9 @@ class SightDetector:
         self.frame_rate = 1
         self.angry_time = 5.0   # 何秒見ていないとキレるか
         self.mad_count = 4      # 何回キレるとブチ切れるか
+        self.nowathing_time = 3.0       # 何秒見ていないとサボり判定か
+        self.watching_time = 3.0        # 何秒見ていると視聴判定か
+        self.watching = False
 
 
     def filtering(self, sig, fold):
@@ -85,20 +89,24 @@ class SightDetector:
         faces = self.face_cascade_.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
 
         if len(faces) == 0:
+            self.noeye_count_ += 1
+            self.eye_count_ = 0
             print('視線未検出......')
-            self.count_ += 1
         else:
+            self.noeye_count_ = 0
+            self.eye_count_ += 1
+            self.angry_count_ = 0
             print('視線検出!')
 
-        if self.count_ == int(self.angry_time / self.frame_rate) :
+        if self.noeye_count_ % int(self.angry_time / self.frame_rate) == 0:
             self.angry_count_ +=1
             if self.angry_count_ >= self.mad_count:
                 print("Death!!!")
                 self.angry_count_ = 0
-                self.count_ = 0
+                # self.count_ = 0
             elif self.angry_count_ < self.mad_count:
                 print('コラ')
-                self.count_ = 0
+                # self.count_ = 0
         
         for x, y, w, h in faces:
             self.face_count_ +=1 
@@ -124,6 +132,12 @@ class SightDetector:
         self.rec_time_ = time.time() - self.start_time_
         self.all_tracking_time_ = (self.face_count_/self.try_count_)*self.rec_time_
 
+        if int(self.eye_count_ / self.frame_rate) > self.watching_time :
+            self.watching = True
+        elif int(self.noeye_count_ / self.frame_rate) > self.nowathing_time :
+            self.watching = False
+        return self.watching
+
 
     def get_palse(self):
         pulse = self.pulse_de(self.X1_)
@@ -132,7 +146,7 @@ class SightDetector:
 
     def reset(self):
         self.rec_time_ = 0
-        self.count_ = 0
+        self.noeye_count_ = 0
         self.face_count_ = 0
         self.try_count_ = 0
         self.all_tracking_time_ = 0
@@ -143,4 +157,8 @@ class SightDetector:
         """経過時間を出力"""
         print("起動時間　　:"+ str(round(self.rec_time_,1)) + "秒")
         print("視線検出時間:"+ str(round(self.all_tracking_time_,1)) + "秒")
+        if self.watching:
+            print('視聴中判定')
+        else :
+            print('サボり判定')
         # print('count : ', self.count_, ', angry_count : ', self.angry_count_, ', face_count : ', self.face_count_, ', try_count : ', self.try_count_)
