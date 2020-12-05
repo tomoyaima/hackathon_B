@@ -22,7 +22,8 @@ def main():
 @app.route('/stop/<user_id>')
 def stop(user_id):
     #return name
-    print("aa")
+    user = users.get_user(user_id)
+    user.end_watching()
     return redirect(url_for("index",\
         user_id = user_id))
 
@@ -58,7 +59,7 @@ def index(user_id):
 
 @app.route('/img/<user_id>', methods=["POST"])
 def img(user_id):
-    #画像処理部分
+    """画像処理部分"""
 
     # どのユーザーの画像か
     user = users.get_user(user_id) #追加
@@ -70,14 +71,17 @@ def img(user_id):
     # imgCV = cv2.bitwise_not(imgCV)
     # cv2.imwrite('./test.jpg', imgCV)
 
-    user.img_process(imgCV) #追加
+    user.img_process(imgCV) # 画像処理部へ投げる
 
     if user.watching :
         result = 'true'
     else :
         result = 'false'
-
+        if user.is_require_caution():
+            """注意が必要ならjsonに警告レベルをくっつける"""
+            return jsonify({'watching' : result, 'caution' : user.caution_level})
     return jsonify({'watching' : result})
+
 
 @app.route('/feed')
 def feed():

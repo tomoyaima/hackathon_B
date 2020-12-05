@@ -10,38 +10,57 @@
     
 </head>
 <body>
-    <!-- <header>
+    <header>
         <h1>
-            <a href="/">SSS ～Study Support System～</a>
+            <a href="../index/{{user_id}}">SSS ～Study Support System～</a>
         </h1>
-        <nav class="pc-nav">
+        <nav>
             <ul>
-                <li><a href="#">ランキング</a></li>
-                <li><a href="#">グラフ</a></li>
-                <li><a href="#">COMPANY</a></li>
-                <li><a href="#">CONTACT</a></li>
+                <li><input type="button" onclick="location.href='../index/{{user_id}}'" value="トップ"></li>
+                <li><input type="button" onclick="location.href='../rank/{{user_id}}'" value="ランキング"></li>
+                <li><input type="button" onclick="location.href='../time/{{user_id}}'" value="グラフ"></li>
+                <li><input type="button" onclick="logout()" value="ログアウト"></li>
+
+                <!--
+                <li><a href="../index/{{user_id}}">トップ</a></li>
+                <li><a href="../rank/{{user_id}}">ランキング</a></li>
+                <li><a href="../time/{{user_id}}">グラフ</a></li>
+                <li><input type="button" onclick="logout()" value="ログアウト"></li>
+                -->
             </ul>
         </nav>
-    </header> -->
-    <h1>SSS ～Study Support System～</h1>
-    <!-- <p id="load">Firebase SDK Loading&hellip;</p> -->
-    <!-- <input type="text" id="user_name" placeholder="ユーザー名"> -->
-    <div id ="user_name">こんにちは</div>
-    <div id ="eye_time"></div>
-    <div id ="rank"></div>
-    <div id="login_count"></div>
-    <a id ="time_url" href="../time/{{user_id}}">時間</a>
-    <a id ="rank_url" href="../rank/{{user_id}}">ランク</a>
-    
-     <video id="myvideo"  width="640" height="480" autoplay playsinline></video>
-    <canvas id="videocanvas" width="640" height="480"></canvas> 
-    <img id="preview" src="{{ url_for('feed') }}" width="640" height="480"><br>
-    <button id="start">録画</button>
-    <button id="stop">ストップ</button>
-   
-    <!-- <input type="button" onclick="video()" value="録画"> -->
+    </header>
 
-    <input type="button" onclick="logout()" value="ログアウト">
+    <main>
+        <center>
+            <br><br><br><br><br>
+
+            <p><div id ="user_name"></div></p>
+            <p><div id ="eye_time"></div></p>
+            <p><div id ="rank"></div></p>
+            <p><div id="login_count"></div></p>
+
+            <div class="button">
+                <button id="start">スタート</button><br>
+                <button id="stop">ストップ</button><br>
+            </div>
+
+            <div class="camera">
+                <br><br><br><br><br>
+                <video id="myvideo"  width="640" height="480" autoplay playsinline></video>
+                <canvas id="videocanvas" width="640" height="480"></canvas> 
+                <img id="preview" src="{{ url_for('feed') }}" width="640" height="480"><br>
+            </div>
+            
+        </center>
+        
+    </main>
+
+    <!--　前のバージョン-
+    <h1>SSS ～Study Support System～</h1>
+   <p id="load">Firebase SDK Loading&hellip;</p> -->
+    <!-- <input type="text" id="user_name" placeholder="ユーザー名"> -->
+   
         <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
   
