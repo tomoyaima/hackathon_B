@@ -8,6 +8,8 @@ let login_count = document.getElementById('login_count')
 let user_uid
 let user_info = []
 let time =0
+let interval_id =null;
+// let stream = null;
 
 // const firebaseConfig = {
 //     /* firebase config */
@@ -85,18 +87,18 @@ $(function(){
 
   });
   $('#stop').click(function(){
-    
-      
+   
+        clearInterval(interval_id);
+        // stream = navigator.mediaDevices.getUserMedia(constraints);
+        interval_id = null;
         const video = document.querySelector('#myvideo');
-        const videoTracks = stream.getVideoTracks();
+        const videoTracks = window.stream.getVideoTracks();
         for (let i = 0; i < videoTracks.length; i++){
             videoTracks[i].stop()
           } 
         window.stream = null; 
-        
-        e.target.disabled = false;
-  
-
+        // e.target.disabled = false;
+       
   });
   
   
@@ -115,10 +117,10 @@ $(function(){
     fd.append('video', null);
    
           //毎フレーム処理
-    setInterval(function(){
+    interval_id = setInterval(function(){
       ctx.drawImage(video, 0, 0, width, height);
       canvas.toBlob(function(blob){  
-          console.log(user_uid);
+        
         fd.set('video', blob);
         $.ajax({
             url: `/img/${user_uid}`,

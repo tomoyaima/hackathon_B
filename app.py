@@ -19,6 +19,18 @@ def main():
     #return name
     return redirect(url_for('login'))
 
+
+@app.route('/rank/<user_id>')
+def rank(user_id):
+    #return name
+    return render_template("rank.html")
+
+
+@app.route('/time/<user_id>')
+def time(user_id):
+    #return name
+       return render_template("time.html")
+
 @app.route('/login.html')
 def login():
     #return name

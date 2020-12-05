@@ -1,0 +1,174 @@
+.btn {
+    padding: 2px 4px;
+    color: #FFF;
+    border-radius: 3px;
+}
+#blue_btn {
+    background: #8cfffa;
+}
+#pink_btn{
+    background: #feaec7;
+}
+#yellow_btn{
+    background: #fdaca6;
+}
+
+
+
+
+/*今日*/
+
+
+/*週間*/
+/*
+.title{text-align; center}
+body{background: $bg-color; color; $clolr-letter;}
+*/
+
+
+/*横軸*/
+.num12{
+    position:absolute;
+    top:100px; left:10px;
+}
+.num9{
+    position:absolute;
+    top:200px; left:15px;
+}
+.num6{
+    position:absolute;
+    top:300px; left:15px;
+}
+.num3{
+    position:absolute;
+    top:400px; left:15px;
+}
+.num0{
+    position:absolute;
+    top:500px; left:15px;
+}
+.date0{
+    position:absolute;
+    top:30px; left:50px;
+}
+.date1{
+    position:absolute;
+    top:30px; left:100px;
+}
+.date2{
+    position:absolute;
+    top:30px; left:50px;
+}
+.date3{
+    position:absolute;
+    top:30px; left:100px;
+}
+.date4{
+    position:absolute;
+    top:30px; left:50px;
+}
+.date5{
+    position:absolute;
+    top:30px; left:100px;
+}
+.date6{
+    position:absolute;
+    top:30px; left:50px;
+}
+
+
+
+.box{
+    position: absolute;
+    display: block;
+    border: solid 4px blue;
+
+/*    margin-top: 4%;*/
+    width: 650px;
+    height: 400px;
+    background: none;
+    top:-370px; left:25px;
+
+}
+
+
+
+/*棒グラフ*/
+.graph-1{
+    position:absolute;
+    top: 0%;
+    left: 0%;
+    width: 1%;
+    height: 100%;
+    background-color: rgba(50,50,50,10)/*$color-letter*/;
+}
+.num-bar-0{
+    position:absolute;
+    top: 10%;
+    left: 40px;
+    width: 30px;
+    height: 90%;
+    background-color:red/* rgba(224,247,150,1)*//*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-1{
+    position:absolute;
+    top: 1%;
+    left: 82.5px;
+    width: 30px;
+    height: 100%;
+    background-color:orange/* rgba(224,247,150,1)*//*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-2{
+    position:absolute;
+    top: 1%;
+    left: 125px;
+    width: 30px;
+    height: 100%;
+    background-color:#8cfffa/* rgba(224,247,150,1)*//*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-3{
+    position:absolute;
+    top: 1%;
+    left: 165.5px;
+    width: 30px;
+    height: 100%;
+    background-color: rgba(224,247,150,1)/*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-4{
+    position:absolute;
+    top: 1%;
+    left: 210px;
+    width: 30px;
+    height: 100%;
+    background-color: rgba(224,247,150,1)/*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-5{
+    position:absolute;
+    top: 1%;
+    left: 252.5px;
+    width: 30px;
+    height: 100%;
+    background-color: rgba(224,247,150,1)/*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
+.num-bar-6{
+    position:absolute;
+    top: 1%;
+    left: 295px;
+    width: 30px;
+    height: 100%;
+    background-color: rgba(224,247,150,1)/*$num-10*/;
+
+    animation: graph-1 3s -1;
+}
