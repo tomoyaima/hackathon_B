@@ -8,6 +8,7 @@ body {
    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
    background-image: url("../image/mori.jpg");
    height: 500px;
+
 }
 header {
    padding: 30px 4% 10px;
@@ -17,6 +18,7 @@ header {
    background-color: #fff;
    display: flex;
    align-items: center;
+   z-index: 2;
 }
 h1 {
    margin: 0; padding: 0;
@@ -68,6 +70,7 @@ li {
    text-align: center;
    top:40px;
    position: relative;
+   z-index: 1;
 }
 
 button{
@@ -101,4 +104,10 @@ input[type="button"]{
 
 input[type="button"]:hover{
    background: blue;;
+}
+#videocanvas{
+    display: none;
+}
+#preview{
+    display: none;
 }
