@@ -14,18 +14,29 @@ class User:
         if not self.watching:
             self.start_t_ = datetime.now(self.JST_)
             self.watching = True
+            print('<--------------------記録スタート-------------------->')
 
     def end_watching(self):
         """Userが画面見ていない判定になったら開始時刻と終了時刻をDBへ記録"""
         if self.watching:
             self.record_watching_time()
             self.watching = False
+            print('<--------------------視聴履歴記録完了!-------------------->')
 
     def record_watching_time(self):
         document_update(self.id_, self.start_t_, datetime.now(self.JST_))
 
+    def reset_watching_database(self):
+        document_set(self.id_)
+
     def img_process(self, img):
-        self.detector_.detect(img)
+        result = self.detector_.detect(img)
+        if result and not self.watching:
+            """視聴開始"""
+            self.start_watching()
+        elif not result and self.watching:
+            """サボり開始"""
+            self.end_watching()
         self.detector_.print_debug()
 
 

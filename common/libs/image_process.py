@@ -31,7 +31,7 @@ class SightDetector:
         self.mad_count = 4      # 何回キレるとブチ切れるか
         self.nowathing_time = 3.0       # 何秒見ていないとサボり判定か
         self.watching_time = 3.0        # 何秒見ていると視聴判定か
-        self.watching = False
+        self.watching = True
 
 
     def filtering(self, sig, fold):
@@ -98,15 +98,13 @@ class SightDetector:
             self.angry_count_ = 0
             print('視線検出!')
 
-        if self.noeye_count_ % int(self.angry_time / self.frame_rate) == 0:
-            self.angry_count_ +=1
-            if self.angry_count_ >= self.mad_count:
-                print("Death!!!")
-                self.angry_count_ = 0
-                # self.count_ = 0
-            elif self.angry_count_ < self.mad_count:
-                print('コラ')
-                # self.count_ = 0
+        # if self.noeye_count_ % int(self.angry_time / self.frame_rate) == 0:
+        #     self.angry_count_ +=1
+        #     if self.angry_count_ >= self.mad_count:
+        #         print("Death!!!")
+        #         self.angry_count_ = 0
+        #     elif self.angry_count_ < self.mad_count:
+        #         print('コラ')
         
         for x, y, w, h in faces:
             self.face_count_ +=1 
@@ -158,7 +156,7 @@ class SightDetector:
         print("起動時間　　:"+ str(round(self.rec_time_,1)) + "秒")
         print("視線検出時間:"+ str(round(self.all_tracking_time_,1)) + "秒")
         if self.watching:
-            print('視聴中判定')
+            print('視聴判定中...')
         else :
-            print('サボり判定')
+            print('サボり判定中...')
         # print('count : ', self.count_, ', angry_count : ', self.angry_count_, ', face_count : ', self.face_count_, ', try_count : ', self.try_count_)
