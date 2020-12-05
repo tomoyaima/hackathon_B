@@ -9,7 +9,8 @@ let user_uid
 let user_info = []
 let time =0
 let interval_id =null;
-
+// let time=0;
+let total_time=0;
 // let stream = null;
 
 // const firebaseConfig = {
@@ -32,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (docs.exists) {
                     
                     user_info=docs.data();
-                    let time=0;
-                    let total_time=0;
+                    time=0;
+                    total_time=0;
                     console.log(user_info.time)
                     // time.foreach(user_info.time[end]-user_info.time[start])
                     for(let i=0;i<user_info.time.start.length;i++){
@@ -46,11 +47,24 @@ document.addEventListener('DOMContentLoaded', function () {
                     eye_time.innerHTML = "視聴時間："+total_time+"秒"
                     rank.innerHTML = "ランキング："+user_info.state+"位"
                     login_count.innerHTML = "ログイン回数："+user_info.login_count+"回"
-
-                }
-            }).catch(error => {
+                } 
+                db.collection("users").doc(user_uid).update({
+                  total_time : total_time
+                  
+              }).then(docRef => {  
+                  console.log('ログイン完了')
+                  // success
+              }).catch(error => {
+                  // error
+                  console.log('ログイン失敗', error);
+          
+              })
+            })
+            .catch(error => {
                 console.log(error)
             })
+
+     
         } else {
             location.href = "/login.html";
         }

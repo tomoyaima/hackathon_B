@@ -1,8 +1,4 @@
 const db = firebase.firestore();
-// let user_name = document.getElementById('user_name')
-// let eye_time = document.getElementById('eye_time')
-// let rank = document.getElementById('rank')
-// let login_count = document.getElementById('login_count')
 let user_uid
 let user_info = []
 let time =0
@@ -22,28 +18,31 @@ if (!firebase.apps.length) {
 document.addEventListener('DOMContentLoaded', function () {
 
     firebase.auth().onAuthStateChanged(function(user) {
-        
+     
         if (user) {
             user_uid = user.uid
-            db.collection("users").get().then((docs) => {
-           
-                if (docs.exists) {
-                    console.log(docs)
-                    user_info=docs.data();
-                    let time=0;
-                    let total_time=0;
-                    console.log(user_info.time)
-                    // time.foreach(user_info.time[end]-user_info.time[start])
-                    for(let i=0;i<user_info.time.start.length;i++){
-                      time= user_info.time.end[i].seconds - user_info.time.start[i].seconds
-                      console.log(time)
-                      total_time +=time 
-                    }
-                    console.log(user_info.time)
-                    user_name.innerHTML = "こんにちは"+user_info.name+"さん"
-                   
-
-                }
+            db.collection("users").orderBy("total_time","desc").get().then((docs) => {
+              let time=0;
+             
+              console.log(docs.docs.length)
+              docs.forEach(function(doc){
+                var data=doc.data();
+                console.log(doc.data())
+                // for(let i=0;i<data.time.start.length;i++){
+                //   time= data.time.end[i].seconds - data.time.start[i].seconds
+                //   data.total_time += time
+                  
+                // }
+                
+              })
+              
+              // docs.sort(function(a,b){
+              //   if(a.total_time > b.total_time) return -1;
+              //   if(a.total_time < b.total_time) return 1;
+              //   return 0;
+              // })
+             
+        
             }).catch(error => {
                 console.log(error)
             })
