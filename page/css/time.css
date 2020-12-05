@@ -1,3 +1,4 @@
+/*
 .btn {
     padding: 2px 4px;
     color: #FFF;
@@ -12,7 +13,7 @@
 #yellow_btn{
     background: #fdaca6;
 }
-
+*/
 
 ​
   
@@ -101,7 +102,7 @@ body{background: $bg-color; color; $clolr-letter;}
     border: solid 4px blue;
 
 /*    margin-top: 4%;*/
-    width: 650px;
+    width: 350px;
     height: 400px;
     background: none;
     top:-370px; left:25px;
@@ -120,15 +121,12 @@ body{background: $bg-color; color; $clolr-letter;}
     background-color: rgba(50,50,50,10)/*$color-letter*/;
 }
 .num-bar-0{
-/*    time-0 = 15;*/
     position:absolute;
-    top: 10%;
+    top: calc(100px + 400px*(1 - attr(eye_time) / 12) );
     left: 40px;
     width: 30px;
-/*    height: calc(100% * time0 / 100);*/
-    height: calc(100%/100*time);
-    background-color:red/* rgba(224,247,150,1)*//*$num-10*/;
-
+    height: calc(100px/100*eye_time);
+    background-color:red;
     animation: graph-1 3s -1;
 }
 .num-bar-1{
