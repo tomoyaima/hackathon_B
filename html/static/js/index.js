@@ -8,8 +8,16 @@ let login_count = document.getElementById('login_count')
 let user_uid
 let user_info = []
 let time =0
-let interval_id =null;
 
+let interval_id =null;
+// let time=0;
+let total_time=0;
+// const bgm1 = document.querySelector("#bgm1");    
+
+// var myAudioURL = chrome.extension.getURL("../music/angry.mp3");
+// オーディオファイルの読み込み
+// audioElm.src = myAudioURL;
+// audioElm.load();
 // let stream = null;
 
 // const firebaseConfig = {
@@ -30,27 +38,43 @@ document.addEventListener('DOMContentLoaded', function () {
             db.collection("users").doc((user_uid)).get().then((docs) => {
            
                 if (docs.exists) {
-                    
+                  let minute=0;
+                  let seconds=0;
                     user_info=docs.data();
-                    let time=0;
-                    let total_time=0;
-                    console.log(user_info.time)
+                    time=0;
+                    total_time=0;
+                    // console.log(user_info.time)
                     // time.foreach(user_info.time[end]-user_info.time[start])
                     for(let i=0;i<user_info.time.start.length;i++){
                       time= user_info.time.end[i].seconds - user_info.time.start[i].seconds
-                      console.log(time)
+                      // console.log(time)
                       total_time +=time 
                     }
-                    console.log(user_info.time)
+                    minute = Math.floor(total_time/60.0);
+                    seconds = total_time%60
+                    // console.log(user_info.time)
                     user_name.innerHTML = "こんにちは"+user_info.name+"さん"
-                    eye_time.innerHTML = "視聴時間："+total_time+"秒"
-                    rank.innerHTML = "ランキング："+user_info.state+"位"
+                    eye_time.innerHTML = "視聴時間："+minute+"分"+seconds+"秒"
+                    // rank.innerHTML = "ランキング："+user_info.state+"位"
                     login_count.innerHTML = "ログイン回数："+user_info.login_count+"回"
-
-                }
-            }).catch(error => {
+                } 
+                db.collection("users").doc(user_uid).update({
+                  total_time : total_time
+                  
+              }).then(docRef => {  
+                  console.log('ログイン完了')
+                  // success
+              }).catch(error => {
+                  // error
+                  console.log('ログイン失敗', error);
+          
+              })
+            })
+            .catch(error => {
                 console.log(error)
             })
+
+     
         } else {
             location.href = "/login.html";
         }
@@ -79,9 +103,14 @@ $(function(){
         facingMode: "environment"
       }
     };
-
+    let audiostart = new Audio();
+    let audioend = new Audio();
+   
   $('#start').click(async function(){
     try {
+      
+      audiostart.src = "../static/music/start_up.mp3";
+      audiostart.play(); // 再生v
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         const video = document.querySelector('#myvideo');
   
@@ -89,13 +118,17 @@ $(function(){
         window.stream = stream; 
         video.srcObject = stream;
         e.target.disabled = true;
+       
       } catch{
         $('#errorMsg').text('カメラの使用を許可してください');
       }
 
   });
+
   $('#stop').click(function(){
-      
+    audioend.src = "../static/music/end.mp3";
+    audioend.play(); // 再生v
+    
         clearInterval(interval_id);
         // stream = navigator.mediaDevices.getUserMedia(constraints);
         interval_id = null;
@@ -104,13 +137,21 @@ $(function(){
         for (let i = 0; i < videoTracks.length; i++){
             videoTracks[i].stop()
           } 
+      
         window.stream = null; 
-        location.href = `/stop/${user_uid}`;
-        alert('頑張ったね')
-        // e.target.disabled = false;
+        
+        
+   
+        
+       // e.target.disabled = false;
        
   });
-  
+
+
+  audioend.addEventListener("ended", function () {
+    alert("おつかれさまです")
+     location.href = `/stop/${user_uid}`;
+  }, false);
   
   var canvas = $('#videocanvas')[0];
   
@@ -144,7 +185,14 @@ $(function(){
             dataType: "text",
         })
         .done(function(data){
-            console.log(data);
+          originalData = JSON.parse(data);
+        
+            // console.log(data.watching);
+            if(originalData.caution>=1){
+              console.log("音声");
+              audiostart.src = "../static/music/angry.mp3";
+              audiostart.play(); // 再生v
+            }
         })
         .fail(function(data){
             console.log(data);

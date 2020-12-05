@@ -1,12 +1,12 @@
 const db = firebase.firestore();
-// let user_name = document.getElementById('user_name')
-// let eye_time = document.getElementById('eye_time')
-// let rank = document.getElementById('rank')
-// let login_count = document.getElementById('login_count')
 let user_uid
 let user_info = []
 let time =0
 let interval_id =null;
+let table = document.getElementById("container")
+
+let table_tr="<table id = 'container'><tr><th>" + "順位" + "</th><th>"  + "名前" + "</th><th>" + "時間(秒)"  + "</th></tr>"
+let i=0
 
 // let stream = null;
 
@@ -20,30 +20,33 @@ if (!firebase.apps.length) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-
+  // let audiostart = new Audio();
+  //   audiostart.src = "../static/music/ranking1.mp3";
+  //   audiostart.play(); // 再生v
     firebase.auth().onAuthStateChanged(function(user) {
-        
+     
         if (user) {
             user_uid = user.uid
-            db.collection("users").get().then((docs) => {
-           
-                if (docs.exists) {
-                    console.log(docs)
-                    user_info=docs.data();
-                    let time=0;
-                    let total_time=0;
-                    console.log(user_info.time)
-                    // time.foreach(user_info.time[end]-user_info.time[start])
-                    for(let i=0;i<user_info.time.start.length;i++){
-                      time= user_info.time.end[i].seconds - user_info.time.start[i].seconds
-                      console.log(time)
-                      total_time +=time 
-                    }
-                    console.log(user_info.time)
-                    user_name.innerHTML = "こんにちは"+user_info.name+"さん"
-                   
-
-                }
+            db.collection("users").orderBy("total_time","desc").get().then((docs) => {
+             
+              let time=0;
+              let minute=0;
+              let seconds=0;
+              console.log(docs.docs.length)
+              docs.forEach(function(doc){
+                var data=doc.data();
+                i+=1
+                minute = Math.floor(data.total_time/60.0)
+                seconds = data.total_time%60
+                table_tr+="<tr><td>" + i + "位</td><td>" + data.name + "</td><td>" + minute+"分"+ seconds+"秒"+ "</td></tr>"      
+              })
+ 
+              table_tr+="</table>"
+              console.log(table_tr)
+              table.innerHTML =table_tr
+              
+             
+        
             }).catch(error => {
                 console.log(error)
             })
@@ -52,5 +55,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
     });
+   
 
 });
+
+function logout() {
+  firebase.auth().signOut().then(() => {
+    console.log('ログアウトしました')
+    alert('ログアウトしました')
+    location.href = "/login";
+  }).catch((error) => {
+    console.log('ログアウト失敗', error);
+    alert('ログアウト失敗')
+  })
+}
