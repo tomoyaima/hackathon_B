@@ -1,38 +1,139 @@
- * {
-    box-sizing: border-box;
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   padding: 0;
+   font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   background-image: url("../image/mori.jpg");
+   height: 500px;
+}
+header {
+   padding: 30px 4% 10px;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   background-color:  #d24545;;
+   display: flex;
+   align-items: center;
+   z-index:100;
+}
+h1 {
+   margin: 0; padding: 0;
+   font-size: 20px;
+}
+a {   
+   text-decoration: none;
+   color: white;
+}
+nav {
+   margin: 0 0 0 auto;
+}
+ul {
+   list-style: none;
+   margin: 0;
+   display: flex;
+}
+li {
+   margin: 0 0 0 15px;
+   font-size: 14px;
+}
+
+.navi {
+  position: relative;
+  display: inline-block;
+  /* margin: 1.5em 0; */
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #fff;
+  border: solid 3px #555;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.navi:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  margin-top: -14px;
+  border: 14px solid transparent;
+  border-left: 14px solid #555;
+  z-index: 1;
+}
+
+.navi p {
+  margin: 10px;
+  padding: 0;
+}
+
+.button{
+   text-align: center;
+   top:40px;
+   position: relative;
+}
+
+button{
+   width:200px;
+   background:#51bafb;
+   color:#fff;
+   font-size: 20px;
+   margin-bottom: 10px;
+}
+
+button:hover{
+   background: blue;;
+}
+
+main{
+  background-image: url("../image/mori.jpg");
+}
+
+.camera{
+    top:10px;
+    position:relative;
+}
+
+input[type="button"]{
+   width:150px;
+   background:#51bafb;
+   color:#fff;
+   font-size: 20px;
+   margin-bottom: 10px;
+}
+
+input[type="button"]:hover{
+   background: blue;;
+}
+
+.talk {
+   width: 100%;
+   margin: 10px 0;
+   overflow: hidden;
  }
- body {
-    margin: 0;
-    padding: 0;
-    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #e6e6e6;
+ 
+ .talk .icon {
+   /* float: right; */
+   margin-left: 300px;
+   margin-top: -160px;
+   width: 40px;
+   /* position:absolute;
+   top:140px;
+   left:65% */
  }
- header {
-    padding: 30px 4% 10px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
+ 
+ .talk .icon img{
+   width: 500%;
+   height: auto;
  }
- h1 {
-    margin: 0; padding: 0;
-    font-size: 20px;
- }
- a {	
-    text-decoration: none;
-    color: #4b4b4b;
- }
- nav {
-    margin: 0 0 0 auto;
- }
- ul {
-    list-style: none;
-    margin: 0;
-    display: flex;
- }
- li {
-    margin: 0 0 0 15px;
-    font-size: 14px;
- }
+
+ #videocanvas{
+    display: none;
+}
+#preview{
+    display: none;
+}

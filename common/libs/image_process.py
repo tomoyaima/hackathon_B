@@ -23,16 +23,12 @@ class SightDetector:
         self.face_count_ = 0
         self.try_count_ = 0
         self.all_tracking_time_ = 0
-        self.angry_count_ = 0
         self.X1_ = []
 
         self.frame_rate = 1
-        self.angry_time = 5.0   # 何秒見ていないとキレるか
-        self.mad_count = 4      # 何回キレるとブチ切れるか
         self.nowathing_time = 3.0       # 何秒見ていないとサボり判定か
         self.watching_time = 3.0        # 何秒見ていると視聴判定か
         self.watching = True
-
 
     def filtering(self, sig, fold):
         # ones = np.ones(fold) / fold
@@ -47,7 +43,7 @@ class SightDetector:
 
     def pulse_de(self, data):
 
-        l = int(self.frame_rate * 1.6)
+        l = self.frame_rate + 1
         H = np.zeros(data.shape[0])
         for t in range(0, (data.shape[0] - l)):
             # Step 1: Spatial averaging
@@ -75,7 +71,10 @@ class SightDetector:
             # P = std@S
             # Step 5: Overlap-Adding
             H[t:t + l - 1] = H[t:t + l - 1] + (P - np.mean(P)) / np.std(P)
-        H = self.filtering(H, 3)
+        try:
+            H = self.filtering(H, 3)
+        except:
+            print('filter ERROR!')
         return H
 
     def detect(self, img):
@@ -95,16 +94,7 @@ class SightDetector:
         else:
             self.noeye_count_ = 0
             self.eye_count_ += 1
-            self.angry_count_ = 0
             print('視線検出!')
-
-        # if self.noeye_count_ % int(self.angry_time / self.frame_rate) == 0:
-        #     self.angry_count_ +=1
-        #     if self.angry_count_ >= self.mad_count:
-        #         print("Death!!!")
-        #         self.angry_count_ = 0
-        #     elif self.angry_count_ < self.mad_count:
-        #         print('コラ')
         
         for x, y, w, h in faces:
             self.face_count_ +=1 
@@ -125,7 +115,8 @@ class SightDetector:
                 self.X1_ = np.array([mean_r1, mean_g1, mean_b1])
             else:
                 self.X1_ = np.vstack((self.X1_, np.array([mean_r1, mean_g1, mean_b1])))
-            # cv2.imshow('video image', img)
+
+        # self.get_palse()
 
         self.rec_time_ = time.time() - self.start_time_
         self.all_tracking_time_ = (self.face_count_/self.try_count_)*self.rec_time_
@@ -136,11 +127,11 @@ class SightDetector:
             self.watching = False
         return self.watching
 
-
     def get_palse(self):
-        pulse = self.pulse_de(self.X1_)
-        # plt.plot(pulse)
-        # plt.show()
+        try:
+            pulse = self.pulse_de(self.X1_)
+        except:
+            print('palse ERROR!!')
 
     def reset(self):
         self.rec_time_ = 0
@@ -148,8 +139,8 @@ class SightDetector:
         self.face_count_ = 0
         self.try_count_ = 0
         self.all_tracking_time_ = 0
-        self.angry_count_ = 0
         self.X1_ = []
+        self.watching = True
 
     def print_debug(self):
         """経過時間を出力"""
