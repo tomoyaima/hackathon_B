@@ -10,18 +10,24 @@ cred = credentials.Certificate(FIREBASE_KEY)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-def document_set(id, name):
-    """usersコレクションへデータ追加・上書き"""
+def document_set(id):
+    """usersのid指定でtimeデータを初期化"""
     doc_ref = db.collection(u'users').document(id)
-    doc_ref.set({
-        u'id'  : id,
-        u'mail': u'hogehoge@hoge.com',
-        u'name': name,
-        u'time': {
-            u'start': [],
-            u'end'  : [],
-        }
-    })
+    try:
+        doc = doc_ref.get().to_dict()
+        doc_ref.update({
+            # u'id'           : doc['id'],
+            # u'login_count'  : doc['login_count'],
+            # u'mail'         : doc['mail'],
+            # u'name'         : doc['name'],
+            # u'state'        : doc['state'],
+            u'time': {
+                u'start': [],
+                u'end'  : [],
+            }
+        })
+    except google.cloud.exceptions.NotFound:
+        print('No such document!')
     return
 
 def document_update(id, start_t, end_t):
@@ -29,16 +35,25 @@ def document_update(id, start_t, end_t):
     doc_ref = db.collection(u'users').document(id)
     try:
         doc = doc_ref.get().to_dict()
-        start = doc['time']['start']
-        end = doc['time']['end']
-        start.append(start_t)
-        end.append(end_t)
-        doc_ref.update({
-            u'time': {
-                u'start': start,
-                u'end'  : end,
-            }
-        })
+        if 'time' not in doc:
+            """timeフィールドがなかったら作る"""
+            doc_ref.update({
+                u'time': {
+                    u'start': [start_t],
+                    u'end'  : [end_t],
+                }
+            })
+        else:
+            start = doc['time']['start']
+            end = doc['time']['end']
+            start.append(start_t)
+            end.append(end_t)
+            doc_ref.update({
+                u'time': {
+                    u'start': start,
+                    u'end'  : end,
+                }
+            })
     except google.cloud.exceptions.NotFound:
         print('No such document!')
     return

@@ -2,7 +2,7 @@
 # pip install "pandas<0.25.0"
 # pip install numpy
 
-from flask import Flask, render_template, url_for, redirect, request, Response  #追加
+from flask import Flask, render_template, url_for, redirect, request, Response, jsonify #追加
 from camera import VideoCamera 
 from PIL import Image
 import numpy as np
@@ -66,7 +66,12 @@ def img(user_id):
 
     user.img_process(imgCV) #追加
 
-    return "success"
+    if user.watching :
+        result = 'true'
+    else :
+        result = 'false'
+
+    return jsonify({'watching' : result})
 
 @app.route('/feed')
 def feed():
