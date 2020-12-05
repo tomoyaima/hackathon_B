@@ -21,60 +21,59 @@ month
     <script type="text/javascript" src="../js/time.js"></script>
     <title>Document</title>
 </head>
+<body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
-
-<body>
     <input type="button" class="btn" id="blue_btn" value="今日の学習時間" />
     <input type="button" class="btn" id="pink_btn" value="今週の学習時間" />
     <input type="button" class="btn" id="yellow_btn" value="今月の学習時間" />
 
 
 
-<!--今日-->
-<div class="container">
-    <table>
-        <script>
-            var today_time=5;
-            document.write("<tr><th>" + "今日の学習時間" + "</th><th>"  +today_time+ "</th><th>" +"時間"  + "</th></tr>");
-        </script>
-    </table>
-</div>
+    <!--今日-->
+    <div class="container">
+        <table>
+            <script>
+                var today_time=5;
+                document.write("<tr><th>" + "今日の学習時間" + "</th><th>"  +today_time+ "</th><th>" +"時間"  + "</th></tr>");
+            </script>
+        </table>
+    </div>
 
 
 
-<!--今週-->
-<div class="week">
-<h2 class="title"> 今週の学習時間 </h2>
+    <!--今週-->
+    <div class="week">
+    <h2 class="title"> 今週の学習時間 </h2>
 
-<!--.clear{
-    clear: both;
-    background-color: #fere;
-}-->
+    <!--.clear{
+        clear: both;
+        background-color: #fere;
+    }-->
 
 
-<div class="num12">
-    <h4>12</h4>
-</div>
-<div class="num9">
-    <h4>9</h4>
-</div>
-<div class="num6">
-    <h4>6</h4>
-</div>
-<div class="num3">
-    <h4>3</h4>
-</div>
-<div class="num0">
-    <h4>0</h4>
+    <div class="num12">
+        <h4>12</h4>
+    </div>
+    <div class="num9">
+        <h4>9</h4>
+    </div>
+    <div class="num6">
+        <h4>6</h4>
+    </div>
+    <div class="num3">
+        <h4>3</h4>
+    </div>
+    <div class="num0">
+        <h4>0</h4>
 
-<div class="date0">
-    <h4>0</h4>   <!--今日-->
-</div>
-<div class="date1">
-    <h4>date_1</h4> <!--昨日-->
-</div>
+    <div class="date0">
+        <h4>0</h4>   <!--今日-->
+    </div>
+    <div class="date1">
+        <h4>date_1</h4> <!--昨日-->
+    </div>
     
 
 
@@ -99,13 +98,57 @@ month
 
 
     <!--今月-->
-    <div class="month">
-        <h2 class="title"> 今月の学習時間 </h2>
-
-        <div class = "tmp">
-        </div>>
-    </div>
-</body>
-</html>
 
 <!--スタイル-->
+​
+    <!--今月-->
+<!--        <script src="../static/js/time.js"></script>-->
+        <script src="../static/js/time.js"></script>
+        <h2 class="title"> 今月の学習時間 </h2>
+        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+            
+        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+​
+        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+        <script src="../js/firebase.js"></script>
+    </body>
+</html>
+
+
+<!--------------------------------------------------------------------->
+
+<!--bit coin-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>デモ | ビットコイン/円(BTC/JPY)リアルタイムレートを作成してみた</title>
+<meta name="description" content="" />
+<link rel="stylesheet" href="../css/time.css" />
+<link rel="stylesheet" href="../css/time.css" />
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@latest/dist/chartjs-plugin-streaming.min.js"></script>
+<!-- Chart.js -->
+</head>
+<body>
+    <!-- contents start -->
+    <div class="container">
+        <section class="section_mb section_mt">
+            <div class="inner">
+                <h2>デモ | ビットコイン/円(BTC/JPY)リアルタイムレートを作成してみた</h2>
+                <h3></h3>
+                <div class="graph_box">
+                    <canvas id="btc_jpy"></canvas>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- contents end -->
+    </div>
+<script src="../js/time.js"></script>
+</body>
+</html>

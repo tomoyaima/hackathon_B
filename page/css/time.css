@@ -14,6 +14,23 @@
 }
 
 
+​
+  
+/* 共通設定 */
+.child {
+color: #fff;
+text-align: center;
+line-height: 100px;
+width: 500px;
+height: 100px;
+background-color: #777;
+}
+​
+​
+.child {
+    display: inline;
+}
+
 
 
 /*今日*/
@@ -109,7 +126,7 @@ body{background: $bg-color; color; $clolr-letter;}
     left: 40px;
     width: 30px;
 /*    height: calc(100% * time0 / 100);*/
-    height: calc(100%/100);
+    height: calc(100%/100*time0);
     background-color:red/* rgba(224,247,150,1)*//*$num-10*/;
 
     animation: graph-1 3s -1;
@@ -169,7 +186,7 @@ body{background: $bg-color; color; $clolr-letter;}
     top: 1%;
     left: 295px;
     width: 30px;
-    height: 100%;
+    height: 50%;
     background-color: rgba(224,247,150,1)/*$num-10*/;
 
     animation: graph-1 3s -1;
@@ -189,3 +206,9 @@ body{background: $bg-color; color; $clolr-letter;}
 
     background-color:color;
 }
+
+
+/****************************************************************************************/
+
+
+​
