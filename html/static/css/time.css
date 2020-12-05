@@ -45,7 +45,7 @@ body{background: $bg-color; color; $clolr-letter;}
 
 
 /*横軸*/
-.num12{
+/*.num12{
     position:absolute;
     top:100px; left:10px;
 }
@@ -93,42 +93,39 @@ body{background: $bg-color; color; $clolr-letter;}
     position:absolute;
     top:30px; left:50px;
 }
+*/
 
-
-
+/*
 .box{
     position: absolute;
     display: block;
     border: solid 4px blue;
 
-/*    margin-top: 4%;*/
     width: 350px;
     height: 400px;
     background: none;
     top:-370px; left:25px;
 
 }
-
+*/
 
 
 /*棒グラフ*/
+/*
 .graph-1{
     position:absolute;
     top: 0%;
     left: 0%;
     width: 1%;
     height: 100%;
-    background-color: rgba(50,50,50,10)/*$color-letter*/;
+    background-color: rgba(50,50,50,10);
 }
 .num-bar-0{
     position:absolute;
-/*    top: calc(100px + 400px*(1 - attr(eye_time) / 12) );*/
-/*    top: calc(100px + 400px*(1 - var(eye_time) / 12) );*/
-    
+    top: calc(100px + 400px*(1 - var(eye_time) / 12) );
     top: 0px;
     left: 40px;
     width: 30px;
-/*    height: calc(100px/100*eye_time);*/
     height: 400px;
     background-color:red;
     animation: graph-1 3s -1;
@@ -139,7 +136,7 @@ body{background: $bg-color; color; $clolr-letter;}
     left: 82.5px;
     width: 30px;
     height: 100%;
-    background-color:orange/* rgba(224,247,150,1)*//*$num-10*/;
+    background-color:orange;
 
     animation: graph-1 3s -1;
 }
@@ -149,7 +146,7 @@ body{background: $bg-color; color; $clolr-letter;}
     left: 125px;
     width: 30px;
     height: 100%;
-    background-color:#8cfffa/* rgba(224,247,150,1)*//*$num-10*/;
+    background-color:#8cfffa;
 
     animation: graph-1 3s -1;
 }
@@ -159,7 +156,7 @@ body{background: $bg-color; color; $clolr-letter;}
     left: 165.5px;
     width: 30px;
     height: 100%;
-    background-color: rgba(224,247,150,1)/*$num-10*/;
+    background-color: rgba(224,247,150,1);
 
     animation: graph-1 3s -1;
 }
@@ -169,7 +166,7 @@ body{background: $bg-color; color; $clolr-letter;}
     left: 210px;
     width: 30px;
     height: 100%;
-    background-color: rgba(224,247,150,1)/*$num-10*/;
+    background-color: rgba(224,247,150,1);
 
     animation: graph-1 3s -1;
 }
@@ -179,7 +176,7 @@ body{background: $bg-color; color; $clolr-letter;}
     left: 252.5px;
     width: 30px;
     height: 100%;
-    background-color: rgba(224,247,150,1)/*$num-10*/;
+    background-color: rgba(224,247,150,1);
 
     animation: graph-1 3s -1;
 }
@@ -189,11 +186,11 @@ body{background: $bg-color; color; $clolr-letter;}
     left: 295px;
     width: 30px;
     height: 50%;
-    background-color: rgba(224,247,150,1)/*$num-10*/;
+    background-color: rgba(224,247,150,1);
 
     animation: graph-1 3s -1;
 }
-
+*/
 
 /*******************************/
 

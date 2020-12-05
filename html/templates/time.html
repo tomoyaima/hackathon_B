@@ -17,7 +17,7 @@
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
-    <script src="../js/firebase.js"></script>
+    <script src="../static/js/firebase.js"></script>
     <!-- <script src="../js/time.js"></script> -->
 </head>
 
@@ -43,7 +43,7 @@
     </div>
 
     <!--今週-->
-    <div class="week">
+<!--    <div class="week">
         <h2 class="title"> 今週の学習時間 </h2>
 
         <div class="num12">
@@ -62,7 +62,7 @@
             <h4>0</h4>
 
         <div id="date0" class="date0">day</div>
-        <!-- <div id="date1" class="date1">
+-->        <!-- <div id="date1" class="date1">
             <h4>date_1</h4>
         </div>
         <div id="date2" class="date2">
@@ -141,9 +141,28 @@
 <canvas id="chart_cv"></canvas>
 
 <script type="text/javascript">
+    const db = firebase.firestore();
+    firebase.auth().onAuthStateChanged(function(user) {
+     
+     if (user) {
+        // var id = "yjQN0JHMakauDOnDjUsElpSaBkB2"
+        console.log(user.uid)
+        var docRef = db.collection("users").doc(user.uid)
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+    }
     // データ --- (*1)
+    var date = 12
     const data = {
-    labels: ['A', 'B', 'C', 'D', 'E'],
+    labels: [String(date), 'B', 'C', 'D', 'E'],
     datasets: [{
       label: '国語のテスト',
       data: [50, 64, 35, 90, 50],
