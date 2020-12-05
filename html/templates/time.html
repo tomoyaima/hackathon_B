@@ -7,7 +7,7 @@
 <!--    <link rel="stylesheet" href="../static/css/time.css"> -->
     <link rel="stylesheet" href="../static/css/time.css">
     <!-- <script src="../static/js/time.js"></script> -->
-    <title>Document</title>
+    <title>Graph</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="../static/js/time.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
@@ -21,8 +21,28 @@
     <!-- <script src="../js/time.js"></script> -->
 </head>
 
-
 <body>
+
+    <header>
+        <h1>
+            <a href="../index/{{user_id}}">SSS ～Study Support System～</a>
+        </h1>
+        <nav>
+            <ul>
+                <li><input type="button" onclick="location.href='../index/{{user_id}}'" value="トップ"></li>
+                <li><input type="button" onclick="location.href='../rank/{{user_id}}'" value="ランキング"></li>
+                <li><input type="button" onclick="location.href='../time/{{user_id}}'" value="グラフ"></li>
+                <li><input type="button" onclick="logout()" value="ログアウト"></li>
+
+                <!--
+                <li><a href="../index/{{user_id}}">トップ</a></li>
+                <li><a href="../rank/{{user_id}}">ランキング</a></li>
+                <li><a href="../time/{{user_id}}">グラフ</a></li>
+                <li><input type="button" onclick="logout()" value="ログアウト"></li>
+                -->
+            </ul>
+        </nav>
+    </header>
 
     <!-- <div class="container">
         <table>
@@ -31,7 +51,6 @@
             </script>
         </table>
     </div> -->
-
 
     <div class="container">
         <table>
@@ -78,7 +97,6 @@
             <h4>date_5</h4>
         </div> -->
 
-
         <!-- <div class="box">
             padding: 3px 10px;
             <div class="num-bar">
@@ -98,7 +116,6 @@
 </body>
 
 
-
 <!--ライブラリ読み込み -->
 <script src="js/time.js"></script>
 
@@ -109,7 +126,6 @@
 <ul id="chart_legend"></ul>
 
 
-
 <!DOCTYPE html>
 <!--<html lang="ja">-->
 <head>
@@ -117,15 +133,12 @@
   <meta charset="UTF-8">
 </head>
 <body>
-  <h1>Chart.jsのテスト</h1>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   <!-- もしくは<script src="Chart.min.js"></script> -->
   <script>
     // ここにChart.jsの処理を記述
   </script>
 <!--</html>-->
-
 
 
 
@@ -224,7 +237,6 @@
       options: {}}
     )}) // オプション
 </script>
-
 
 </body>
 
