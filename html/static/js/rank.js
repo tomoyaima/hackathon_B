@@ -1,6 +1,15 @@
-// import firebase from "firebase/app"
-// import "firebase/firestore"
 const db = firebase.firestore();
+// let user_name = document.getElementById('user_name')
+// let eye_time = document.getElementById('eye_time')
+// let rank = document.getElementById('rank')
+// let login_count = document.getElementById('login_count')
+let user_uid
+let user_info = []
+let time =0
+let interval_id =null;
+
+// let stream = null;
+
 // const firebaseConfig = {
 //     /* firebase config */
 // }
@@ -10,61 +19,38 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 
-function signup() {
-    let user = document.getElementById('user_name').value
-    let email = document.getElementById('email').value
-    let password = document.getElementById('password').value
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((user_info) => {
-            
-           
-            db.collection("users").doc(user_info.user.uid).set({ 
-                id: user_info.user.uid,
-                mail: email,
-                name: user,
-                state:0,
-                time:0
+document.addEventListener('DOMContentLoaded', function () {
 
-            })
-            .then(docRef => {
-                alert('ユーザー作成完了')
-                // success
-            }).catch(error => {
-                // error
-                console.log('ユーザー作成失敗', error);
-                alert('ユーザー作成失敗')
-            })
-        })
-      .catch((error) => {
-        console.log('ユーザー作成失敗', error);
-        alert('ユーザー作成失敗')
-    });
-}
-  
-function login() {
-    let email = document.getElementById('email').value
-    let password = document.getElementById('password').value
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((user_info) => {
-          
-        console.log('ログイン完了')
-        // console.log(user_info.user.uid)
-        alert('ログイン完了')
+    firebase.auth().onAuthStateChanged(function(user) {
         
-      })
-      .catch((error) => {
-        console.log('ログイン失敗', error);
-        alert('ログイン失敗')
-      });
-}
+        if (user) {
+            user_uid = user.uid
+            db.collection("users").get().then((docs) => {
+           
+                if (docs.exists) {
+                    console.log(docs)
+                    user_info=docs.data();
+                    let time=0;
+                    let total_time=0;
+                    console.log(user_info.time)
+                    // time.foreach(user_info.time[end]-user_info.time[start])
+                    for(let i=0;i<user_info.time.start.length;i++){
+                      time= user_info.time.end[i].seconds - user_info.time.start[i].seconds
+                      console.log(time)
+                      total_time +=time 
+                    }
+                    console.log(user_info.time)
+                    user_name.innerHTML = "こんにちは"+user_info.name+"さん"
+                   
 
-function logout() {
-    firebase.auth().signOut().then(() => {
-      console.log('ログアウトしました')
-      alert('ログアウトしました')
-      document.getElementById('emailVerify').innerHTML = 'ログイン後に確認します'
-    }).catch((error) => {
-      console.log('ログアウト失敗', error);
-      alert('ログアウト失敗')
-    })
-  }
+                }
+            }).catch(error => {
+                console.log(error)
+            })
+        } else {
+            location.href = "/login.html";
+        }
+
+    });
+
+});
