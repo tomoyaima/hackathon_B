@@ -9,6 +9,7 @@ let user_uid
 let user_info = []
 let time =0
 
+let image = document.getElementById('kyouryuu')
 let interval_id =null;
 // let time=0;
 let total_time=0;
@@ -192,6 +193,9 @@ $(function(){
               console.log("音声");
               audiostart.src = "../static/music/angry.mp3";
               audiostart.play(); // 再生v
+              image.src="../static/image/kyouryu_angry.png"
+            }else{
+              image.src="../static/image/kyouryu01.png"
             }
         })
         .fail(function(data){
