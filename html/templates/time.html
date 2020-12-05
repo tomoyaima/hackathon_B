@@ -91,11 +91,11 @@
                 <div class="num-bar-6"></div>
             </div>
         </div> -->
-    </div>
+    <!-- </div> -->
 
     <!--今月-->
 <!--        <h2 class="title"> 今月の学習時間 </h2> -->
-    </body>
+</body>
 
 
 
@@ -119,10 +119,6 @@
 <body>
   <h1>Chart.jsのテスト</h1>
 
-  <!-- <div style="width: 50%">
-    <canvas id="chart" height="450" width="600"></canvas>
-  </div> -->
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   <!-- もしくは<script src="Chart.min.js"></script> -->
   <script>
@@ -137,6 +133,7 @@
 <script type="text/javascript"
  src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js">
 </script>
+
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.min.js"
     integrity="sha512-F+u8eWHrfY8Xw9BLzZ8rG/0wIvs0y+JyRJrXjp3VjtFPylAEEGwKbua5Ip/oiVhaTDaDs4eU2Xtsxjs/9ag2bQ=="
@@ -154,7 +151,6 @@
      if (user) {
         // var id = "yjQN0JHMakauDOnDjUsElpSaBkB2"
         console.log(user.uid)
-
         var docRef = db.collection("users").doc(user.uid)
         const doc = await docRef.get();
         const docData = doc.data();
@@ -209,8 +205,24 @@
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
-    }}
-    )
+    }
+
+    // データ --- (*1)
+    //var date = 12
+    const data = {
+    labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+    datasets: [{
+      label: '国語のテスト',
+      data: [50, 64, 35, 90, 50],
+      backgroundColor: ['red','blue','yellow','green','rgba(0,0,255,0.5)']
+    }]}
+    // グラフを描画 --- (*2)
+    const ctx = document.getElementById('chart_cv')
+    const chart_cv = new Chart(ctx, {
+      type: 'bar', // グラフの種類
+      data: data, // データ
+      options: {}}
+    )}) // オプション
 </script>
 
 
