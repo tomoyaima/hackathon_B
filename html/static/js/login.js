@@ -28,7 +28,7 @@ function signup() {
                 state:0,
             
                 login_count:0,
-                time:time
+                // time:time
 
 
             })

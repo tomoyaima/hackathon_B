@@ -87,7 +87,7 @@ $(function(){
 
   });
   $('#stop').click(function(){
-   
+      
         clearInterval(interval_id);
         // stream = navigator.mediaDevices.getUserMedia(constraints);
         interval_id = null;
@@ -122,6 +122,9 @@ $(function(){
       canvas.toBlob(function(blob){  
         
         fd.set('video', blob);
+        // fd.set('watching', true);
+        console.log(blob)
+        
         $.ajax({
             url: `/img/${user_uid}`,
             type : "POST",
