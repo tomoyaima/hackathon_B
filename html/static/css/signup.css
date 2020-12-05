@@ -1,11 +1,21 @@
 body{
     align-items: center;
-    text-align:center
+    text-align:center;
+    background-image: url("../image/pattern.jpg");
 }
 
 h1{
     color:#4007da;
-    margin:30px;
+    background-color: white;
+    margin: 0;
+}
+
+h2{
+    margin: 0;
+    margin-bottom: 20px;
+    border-bottom: 4px solid black;
+    background-color: white;
+    padding-bottom:5px;
 }
 
 input[type="text"],input[type="email"],input[type="password"]{
@@ -35,4 +45,13 @@ a{
 
 a:hover{
     color: blue;
+}
+
+.format{
+    background-color: white;
+    width: 400px;
+    margin: 40px auto;
+    padding-top: 10px;
+    padding-bottom:20px;
+    border:2px solid black;
 }
