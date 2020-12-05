@@ -12,8 +12,28 @@
 
 
 <body>
- 
+    <header>
+        <h1>
+            <a href="../index/{{user_id}}">SSS ～Study Support System～</a>
+        </h1>
+        <nav>
+            <ul>
+                <li><input type="button" onclick="location.href='../index/{{user_id}}'" value="トップ"></li>
+                <li><input type="button" onclick="location.href='../rank/{{user_id}}'" value="ランキング"></li>
+                <li><input type="button" onclick="location.href='../time/{{user_id}}'" value="グラフ"></li>
+                <li><input type="button" onclick="logout()" value="ログアウト"></li>
+
+                <!--
+                <li><a href="../index/{{user_id}}">トップ</a></li>
+                <li><a href="../rank/{{user_id}}">ランキング</a></li>
+                <li><a href="../time/{{user_id}}">グラフ</a></li>
+                <li><input type="button" onclick="logout()" value="ログアウト"></li>
+                -->
+            </ul>
+        </nav>
+    </header>
     <h1>ランキング</h1>
+  
     <input type="button" class="btn" value="今日の学習時間" />
     <input type="button" class="btn" value="今週の学習時間" />
     <input type="button" class="btn" value="今月の学習時間" />
