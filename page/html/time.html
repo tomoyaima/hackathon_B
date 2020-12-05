@@ -18,7 +18,8 @@ month
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/time.css">
-<title>Document</title>
+    <script type="text/javascript" src="../js/time.js"></script>
+    <title>Document</title>
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -69,10 +70,10 @@ month
     <h4>0</h4>
 
 <div class="date0">
-    <h4>date_0</h4><!--今日-->
+    <h4>0</h4>   <!--今日-->
 </div>
 <div class="date1">
-    <h4>date_1</h4><!--今日-->
+    <h4>date_1</h4> <!--昨日-->
 </div>
     
 
@@ -91,11 +92,20 @@ month
     </div>
 </div>
 
+<script>
+    var today = new Date();
+    console.log(today.getDate());
+</script>
 
 
-<!--今月-->
-<h2 class="title"> 今月の学習時間 </h2>
+    <!--今月-->
+    <div class="month">
+        <h2 class="title"> 今月の学習時間 </h2>
 
-
+        <div class = "tmp">
+        </div>>
+    </div>
 </body>
 </html>
+
+<!--スタイル-->
