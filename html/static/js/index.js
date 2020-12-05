@@ -31,21 +31,24 @@ document.addEventListener('DOMContentLoaded', function () {
             db.collection("users").doc((user_uid)).get().then((docs) => {
            
                 if (docs.exists) {
-                    
+                  let minute=0;
+                  let seconds=0;
                     user_info=docs.data();
                     time=0;
                     total_time=0;
-                    console.log(user_info.time)
+                    // console.log(user_info.time)
                     // time.foreach(user_info.time[end]-user_info.time[start])
                     for(let i=0;i<user_info.time.start.length;i++){
                       time= user_info.time.end[i].seconds - user_info.time.start[i].seconds
-                      console.log(time)
+                      // console.log(time)
                       total_time +=time 
                     }
-                    console.log(user_info.time)
+                    minute = Math.floor(total_time/60.0);
+                    seconds = total_time%60
+                    // console.log(user_info.time)
                     user_name.innerHTML = "こんにちは"+user_info.name+"さん"
-                    eye_time.innerHTML = "視聴時間："+total_time+"秒"
-                    rank.innerHTML = "ランキング："+user_info.state+"位"
+                    eye_time.innerHTML = "視聴時間："+minute+"分"+seconds+"秒"
+                    // rank.innerHTML = "ランキング："+user_info.state+"位"
                     login_count.innerHTML = "ログイン回数："+user_info.login_count+"回"
                 } 
                 db.collection("users").doc(user_uid).update({
