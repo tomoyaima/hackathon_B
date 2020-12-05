@@ -13,125 +13,22 @@
 
 <body>
     <h1>ランキング</h1>
-    <input type="button" class="btn" id="blue_btn" value="今日の学習時間" />
-    <input type="button" class="btn" id="pink_btn" value="今週の学習時間" />
-    <input type="button" class="btn" id="yellow_btn" value="今月の学習時間" />
+    <input type="button" class="btn" value="今日の学習時間" />
+    <input type="button" class="btn" value="今週の学習時間" />
+    <input type="button" class="btn" value="今月の学習時間" />
     
-<!--    <script type="text/JavaScript">
-        function hello(){
-        alert('Hello world');
-    }
-    </script>
-
-    hello();
-
-    $('body').html('hi');
--->
-
-<!--    <p>こんにちは</p>
-    <a href="#">サンプルリンク</a>
-     
-    <script>
-        const result1 = $('p').html();
-        const result2 = $('a').html();
-     
-        console.log( result1 );
-        console.log( result2 );
-    </script>
--->
-
-<!--
-<table class="border" border="1">
-    <tr>
-      <th>順位</th><th>ID</th><th>ポイント</th>
-    </tr>
-    for(var i=1; i <= 5; i++){
-        <tr>
-            <td>document.write('<th>'+i+'</th>')</td><td>甘い</td><td>15</td>
-        </tr>
-    }
-
-    <tr>
-      <td>レモン</td><td>酸っぱい</td><td>2</td>
-    </tr>
-</table>
--->
-
-
-<!--
-  <div class="container">
-        <h1>ランキング</h1>
-    <table class="border" border="1">
-    <table>
-        <script>
-        //xの行を作る
-        document.write('<tr>');
-
-        //何も掛け算をしない空白のthを作成
-        document.write('<th></th>');
-
-        //xの行を記述するため、1から9の数字を繰り返しHTMLに記述する
-/*        for(var i=1; i <= 3; i++){
-          document.write('<th>'+ i +' x</th>');
-        }
-*/  i=5;
-        document.write('<th>'+ "i" +' x</th>');
- 
-        //ここでxの行を閉じる
-        document.write('</tr>');
-
-        //ここまでxの行
-
-        //jの列を作る
-        document.write('<tr>');
-
-        //jの列を記述するため、1から9の数字を繰り返しHTMLに記述する
-        for(var j=1; j <= 5; j++){
-          document.write('<th>' + j + 'y</th>');
-
-        //j*kを繰り返すことで、計算結果をtdタグの中に表示する
-          for(var k=1; k <=9; k++){
-            document.write('<td>'+ j*k +'</td>');
-          }
-        //ここでjの行を閉じる
-          document.write('</tr>');
-        }
-      </script>
-    </table>
-  </div>
--->
-
-
-N=10;
-var tmp[N][N];
-tmp[1][1]="a";
-
-
-
-
-
 <div class="container">
-<table>
-    <script>
-        var ID = new Array(
-            "rank",
-            "A",
-            "B",
-            "C",
-            "D",
-            "E"
-        );
-
-        ID[2]="two";
-
+  <table>
+      <script>
+        /*データを取得*/
         document.write("<table>");
-        document.write("<tr><th>" + "順位" + "</th><th>"  +"ID"+ "</th><th>" +"point"  + "</th></tr>");
-        for(var i = 1; i<=5; i++){
-            document.write("<tr><td>" + i + "位</td><td>" + ID[i] + "</td></tr>");
+        document.write("<tr><th>" + "順位" + "</th><th>"  + "ID" + "</th><th>" + "時間"  + "</th></tr>");
+        for(var i = 1; i<=100; i++){
+            document.write("<tr><td>" + i + "位</td><td>" + ID[i] + "</td></td>" + time[i] + "</td></tr>");
         }
         document.write("</table>");
     </script>
-</table>
+  </table>
 </div>
 
 </body>
