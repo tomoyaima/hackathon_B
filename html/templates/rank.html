@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/rank.css">
-    <script src="../static/js/firebase.js"></script>
-    <script src="../static/js/rank.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    
     <title>Document</title>
 </head>
 
@@ -18,19 +18,9 @@
     <input type="button" class="btn" value="今週の学習時間" />
     <input type="button" class="btn" value="今月の学習時間" />
     
-    <div class="container">
-    <table>
-        <script>
-            /*データを取得*/
-            document.write("<table id = 'ranking'>");
-            document.write("<tr><th>" + "順位" + "</th><th>"  + "ID" + "</th><th>" + "時間"  + "</th></tr>");
-            for(var i = 1; i<=100; i++){
-                document.write("<tr><td>" + i + "位</td><td>" + ID[i] + "</td></td>" + time[i] + "</td></tr>");
-            }
-            document.write("</table>");
-        </script>
+    <table id ="container" class="container">
+  
     </table>
-    </div>
 
 
 
@@ -45,7 +35,8 @@
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
-   
+    <script src="../static/js/firebase.js"></script>
+    <script src="../static/js/rank.js"></script>
 </body>
 
 </html>
