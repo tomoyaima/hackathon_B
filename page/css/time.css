@@ -126,7 +126,7 @@ body{background: $bg-color; color; $clolr-letter;}
     left: 40px;
     width: 30px;
 /*    height: calc(100% * time0 / 100);*/
-    height: calc(100%/100*time0);
+    height: calc(100%/100*time);
     background-color:red/* rgba(224,247,150,1)*//*$num-10*/;
 
     animation: graph-1 3s -1;
@@ -209,6 +209,3 @@ body{background: $bg-color; color; $clolr-letter;}
 
 
 /****************************************************************************************/
-
-
-​
