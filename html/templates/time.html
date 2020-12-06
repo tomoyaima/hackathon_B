@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--    <link rel="stylesheet" type="text/css" href="time.css" />  --> <!---元々-->
-<!--    <link rel="stylesheet" href="../static/css/time.css"> -->
     <link rel="stylesheet" href="../static/css/time.css">
     <!-- <script src="../static/js/time.js"></script> -->
     <title>Graph</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="../static/js/time.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
-    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
 
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
     <script src="../static/js/firebase.js"></script>
-    <!-- <script src="../js/time.js"></script> -->
+    <script src="js/time.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 </head>
 
 <body>
@@ -127,7 +125,6 @@
 
 
 <!DOCTYPE html>
-<!--<html lang="ja">-->
 <head>
   <title>Chart.js TEST</title>
   <meta charset="UTF-8">
@@ -147,73 +144,96 @@
  src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js">
 </script>
 
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.min.js"
-    integrity="sha512-F+u8eWHrfY8Xw9BLzZ8rG/0wIvs0y+JyRJrXjp3VjtFPylAEEGwKbua5Ip/oiVhaTDaDs4eU2Xtsxjs/9ag2bQ=="
-    crossorigin="anonymous">
-</script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.min.js"
+        integrity="sha512-F+u8eWHrfY8Xw9BLzZ8rG/0wIvs0y+JyRJrXjp3VjtFPylAEEGwKbua5Ip/oiVhaTDaDs4eU2Xtsxjs/9ag2bQ=="
+        crossorigin="anonymous">
+    </script>
 
-<canvas id="chart_cv"></canvas>
+    <canvas id="chart_cv"></canvas>
 
-<script type="text/javascript">
-    const db = firebase.firestore();
-    let summary ={};
-    let day_k
-    firebase.auth().onAuthStateChanged(async function(user) {
-    
-     if (user) {
-        // var id = "yjQN0JHMakauDOnDjUsElpSaBkB2"
-        console.log(user.uid)
-        var docRef = db.collection("users").doc(user.uid)
-        const doc = await docRef.get();
-        const docData = doc.data();
-        // console.log(docData);
+    <script type="text/javascript">
+        const db = firebase.firestore();
+        let summary ={};
+        let day_k
+        firebase.auth().onAuthStateChanged(async function(user) {
         
-        const start = docData.time.start;
-        const end = docData.time.end;
-        const startDates = start.map(x => x.toDate())
-        const endDates = end.map(x => x.toDate())
+        if (user) {
+            console.log(user.uid)
 
-        // console.log(startDates);
-        // console.log(endDates);
+            var docRef = db.collection("users").doc(user.uid)
+            const doc = await docRef.get();
+            const docData = doc.data();
+            
+            const start = docData.time.start;
+            const end = docData.time.end;
+            const startDates = start.map(x => x.toDate())
+            const endDates = end.map(x => x.toDate())
 
-        const margedData = [];
-        startDates.forEach((x, i) => {
-            margedData.push({
-                date: x,
-                second: dateFns.differenceInSeconds(endDates[i], startDates[i]),
-            })
-        });
-        
-        console.log(margedData);
+            const margedData = [];
+            startDates.forEach((x, i) => {
+                margedData.push({
+                    date: x,
+                    second: dateFns.differenceInSeconds(endDates[i], startDates[i]),
+                })
+            });
+            
+            console.log(margedData);
 
-        const days = dateFns.eachDay(dateFns.addDays(new Date(), -6), new Date())
-        
-        console.log(days);
-        
-        const summaryData = days.map(x =>
-            margedData
-                .filter(y => dateFns.isSameDay(x, y.date))
-                .reduce((a, b) => a + b.second, 0)
-        );
-        
-        console.log(summaryData);
-        
-        const graphData = {
-            labels: days.map(x => dateFns.format(x, 'YYYY-MM-DD')),
-            datasets: [{
-            label: '',
-            data: summaryData,
-            backgroundColor: ['red','blue','yellow','green','silver','green','silver']
-        }]}
+            const days = dateFns.eachDay(dateFns.addDays(new Date(), -6), new Date())
+            
+            console.log(days);
+            
+            const summaryData = days.map(x =>
+                margedData
+//                    y.date /= 60
+                    .filter(y => dateFns.isSameDay(x, y.date))
+                    .reduce((a, b) => a + b.second, 0)
+            );
+            
+            console.log(summaryData);
+            
+            const graphData = {
+                labels: days.map(x => dateFns.format(x, 'YYYY-MM-DD')),
+                datasets: [{
+                label: '週間',
+                data: summaryData,
+                backgroundColor: ['skyblue','skyblue','skyblue','skyblue','skyblue','skyblue','blue']
+            }]}
 
-        // グラフを描画 --- (*2)
-        const ctx = document.getElementById('chart_cv')
-        const chart_cv = new Chart(ctx, {
-            type: 'bar', // グラフの種類
-            data: graphData, // データ
-            options: {}
-        }) // オプション
+            // グラフを描画 --- (*2)
+            const ctx = document.getElementById('chart_cv')
+            const chart_cv = new Chart(ctx, {
+                type: 'bar', // グラフの種類
+                data: graphData, // データ
+                options: {
+                    legend:{
+                        display:false
+                    },
+                    scales:{
+                        xAxes:[{
+                            scaleLabel:{
+                                display: true,
+                                labelString: "日付",
+                                fontColor: '#000',
+                                fontSize: 20
+                            }
+                        }],
+                        yAxes:[{
+                            scaleLabel:{
+                                display: true,
+                                labelString: "学習時間",
+                                fontColor: '#000',
+                                fontSize: 20
+                            },
+                            ticks: {
+                                suggesteMin : 0,
+                            }
+                        }]
+                    },
+                    strokeColor: '#000',
+                    borderWidth: 10
+                }
                 
     } else {
         // doc.data() will be undefined in this case
@@ -239,5 +259,4 @@
 </script>
 
 </body>
-
 </html>
