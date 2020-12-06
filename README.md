@@ -13,6 +13,7 @@ pip install python-dotenv
 pip install opencv-python
 pip install scipy
 pip install numpy
+pip install slacker
 ~~~
 
 ~~~
