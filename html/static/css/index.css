@@ -129,6 +129,7 @@ input[type="button"]:hover{
  .talk .icon img{
    width: 500%;
    height: auto;
+   padding-top:20px;
  }
 
  #videocanvas{

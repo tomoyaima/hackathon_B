@@ -1,8 +1,11 @@
+from common.anai_lib.resampling import resampling_sp
 import cv2
 import time
 # import matplotlib.pyplot as plt
 import numpy as np
 from scipy import signal
+from scipy.interpolate import interp1d
+import math
 
 import config.setting as setting
 
@@ -24,11 +27,15 @@ class SightDetector:
         self.try_count_ = 0
         self.all_tracking_time_ = 0
         self.X1_ = []
+        self.palse_ = []
 
-        self.frame_rate = 1
+        # デフォルト値
+        self.frame_rate = 3
         self.nowathing_time = 3.0       # 何秒見ていないとサボり判定か
         self.watching_time = 3.0        # 何秒見ていると視聴判定か
+        self.get_palse_interval = 5       # 集中力を測る感覚(秒)
         self.watching = True
+        self.concentration = -1
 
     def filtering(self, sig, fold):
         # ones = np.ones(fold) / fold
@@ -71,10 +78,11 @@ class SightDetector:
             # P = std@S
             # Step 5: Overlap-Adding
             H[t:t + l - 1] = H[t:t + l - 1] + (P - np.mean(P)) / np.std(P)
-        try:
-            H = self.filtering(H, 3)
-        except:
-            print('filter ERROR!')
+        # フィルターは削除
+        # try:
+        #     H = self.filtering(H, 3)
+        # except:
+        #     print('filter ERROR!')
         return H
 
     def detect(self, img):
@@ -116,10 +124,11 @@ class SightDetector:
             else:
                 self.X1_ = np.vstack((self.X1_, np.array([mean_r1, mean_g1, mean_b1])))
 
-        # self.get_palse()
-
         self.rec_time_ = time.time() - self.start_time_
         self.all_tracking_time_ = (self.face_count_/self.try_count_)*self.rec_time_
+        if (self.face_count_ ) % (int(self.get_palse_interval) * int(self.frame_rate)) == 0 and self.eye_count_ != 0:
+            # get_palse_interval毎に集中度計算
+            self.get_palse()
 
         if int(self.eye_count_ / self.frame_rate) > self.watching_time :
             self.watching = True
@@ -127,9 +136,42 @@ class SightDetector:
             self.watching = False
         return self.watching
 
+    def resampling_sp(self, time, data, fs_re, s_time, e_time): # 引数：時間[s]、データ、リサンプリング周波数[Hz]、リサンプリング開始時間[s]、リサンプリング終了時間[s]
+        """ データをリサンプリングする関数（3次スプライン補間を使用。時間の単位は「秒」にすること） """
+        try:
+            f_CS = interp1d(time, data, kind='cubic')               # 3次スプライン補間
+            time_re = np.arange(s_time, e_time+1/fs_re, 1/fs_re)    # リサンプリング後の時間配列を作成（自由に決めてOK）
+            data_re = f_CS(time_re)                                 # 3次スプライン補間を用いてリサンプリング    
+            return time_re, data_re                                 # リサンプリング後の時間、リサンプリング後のデータ
+        except:
+            print('resampling ERROR!!')
+            return
+
     def get_palse(self):
         try:
-            pulse = self.pulse_de(self.X1_)
+            self.pulse_ = self.pulse_de(self.X1_)
+            #プロットするために時間（フレームレート）を作っている
+            t = np.linspace(0, len(self.pulse_)-1, len(self.pulse_))
+            t , self.pulse_ = self.resampling_sp(t, self.pulse_, fs_re=10 * self.frame_rate, s_time=math.ceil(t[0]), e_time=math.floor(t[-1])) 
+
+            maxid = signal.argrelmax(self.pulse_, order=3)  #脈拍の最大点を取り出すためにidを受け取ってる
+
+            max_pulse= t[maxid[0]]                          #脈拍の最大点の時間（フレーム数）を受け取っている
+            rr = np.zeros(len(max_pulse))                 #rrインターバル（脈拍間隔）を受け取るために作る
+            rr_s = np.zeros(len(max_pulse))
+
+            fps = self.face_count_/round(self.rec_time_,1)  #カメラのフレームレート（1秒あたりの画像の枚数）を計算。        
+            Concentration_count = 0
+            correction = 0.5
+            for i in range(0, len(max_pulse) - 1, 1):           #rrインターバルを計算する
+                rr[i] = max_pulse[i+1] - max_pulse[i]
+                rr_s[i] = rr[i]/fps+correction              #だいぶ怪しい手法ですが、精度が低いので無理やり上げています。
+                if rr_s[i] > 1.5:
+                    Concentration_count += 1
+
+            self.concentration = Concentration_count/len(rr_s)
+
+            print("集中率     :"+ str(round(self.concentration * 100 ,1)) + "％")
         except:
             print('palse ERROR!!')
 
