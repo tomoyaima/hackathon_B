@@ -1,3 +1,4 @@
+
 /*
 .btn {
     padding: 2px 4px;
@@ -15,196 +16,254 @@
 }
 */
 
-​
+
   
 /* 共通設定 */
 .child {
-color: #fff;
-text-align: center;
-line-height: 100px;
-width: 500px;
-height: 100px;
-background-color: #777;
-}
-​
-​
-.child {
-    display: inline;
-}
+    color: #fff;
+    text-align: center;
+    line-height: 100px;
+    width: 500px;
+    height: 100px;
+    background-color: #777;
+    }
+    
+    
+    .child {
+        display: inline;
+    }
+    
+    
+    /*今日*/
+    
+    /*週間*/
+    /*
+    .title{text-align; center}
+    body{background: $bg-color; color; $clolr-letter;}
+    */
+    
+    /*横軸*/
+    /*.num12{
+        position:absolute;
+        top:100px; left:10px;
+    }
+    .num9{
+        position:absolute;
+        top:200px; left:15px;
+    }
+    .num6{
+        position:absolute;
+        top:300px; left:15px;
+    }
+    .num3{
+        position:absolute;
+        top:400px; left:15px;
+    }
+    .num0{
+        position:absolute;
+        top:500px; left:15px;
+    }
+    .date0{
+        position:absolute;
+        top:30px; left:50px;
+    }
+    .date1{
+        position:absolute;
+        top:30px; left:100px;
+    }
+    .date2{
+        position:absolute;
+        top:30px; left:50px;
+    }
+    .date3{
+        position:absolute;
+        top:30px; left:100px;
+    }
+    .date4{
+        position:absolute;
+        top:30px; left:50px;
+    }
+    .date5{
+        position:absolute;
+        top:30px; left:100px;
+    }
+    .date6{
+        position:absolute;
+        top:30px; left:50px;
+    }
+    */
+    
+    /*
+    .box{
+        position: absolute;
+        display: block;
+        border: solid 4px blue;
+    
+        width: 350px;
+        height: 400px;
+        background: none;
+        top:-370px; left:25px;
+    
+    }
+    */
+    
+    /*棒グラフ*/
+    /*
+    .graph-1{
+        position:absolute;
+        top: 0%;
+        left: 0%;
+        width: 1%;
+        height: 100%;
+        background-color: rgba(50,50,50,10);
+    }
+    .num-bar-0{
+        position:absolute;
+        top: calc(100px + 400px*(1 - var(eye_time) / 12) );
+        top: 0px;
+        left: 40px;
+        width: 30px;
+        height: 400px;
+        background-color:red;
+        animation: graph-1 3s -1;
+    }
+    .num-bar-1{
+        position:absolute;
+        top: 0%;
+        left: 82.5px;
+        width: 30px;
+        height: 100%;
+        background-color:orange;
+    
+        animation: graph-1 3s -1;
+    }
+    .num-bar-2{
+        position:absolute;
+        top: 1%;
+        left: 125px;
+        width: 30px;
+        height: 100%;
+        background-color:#8cfffa;
+    
+        animation: graph-1 3s -1;
+    }
+    .num-bar-3{
+        position:absolute;
+        top: 1%;
+        left: 165.5px;
+        width: 30px;
+        height: 100%;
+        background-color: rgba(224,247,150,1);
+    
+        animation: graph-1 3s -1;
+    }
+    .num-bar-4{
+        position:absolute;
+        top: 1%;
+        left: 210px;
+        width: 30px;
+        height: 100%;
+        background-color: rgba(224,247,150,1);
+    
+        animation: graph-1 3s -1;
+    }
+    .num-bar-5{
+        position:absolute;
+        top: 1%;
+        left: 252.5px;
+        width: 30px;
+        height: 100%;
+        background-color: rgba(224,247,150,1);
+    
+        animation: graph-1 3s -1;
+    }
+    .num-bar-6{
+        position:absolute;
+        top: 1%;
+        left: 295px;
+        width: 30px;
+        height: 50%;
+        background-color: rgba(224,247,150,1);
+    
+        animation: graph-1 3s -1;
+    }
+    */
+    
+    /*******************************/
+    
+    
+    /*今月*/
+    .month{
+        top: 1000px;
+        left: 295px;
+        width: 100px;
+        height: 100%;
+    
+        background-color:color;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background-image: url("../image/mori.jpg");
+        height: 500px;
+     }
+    
+    header {
+        padding: 30px 4% 10px;
+        position: fixed;
+        top: 0;
+        width:93%;
+        /* width: 100%; */
+        background-color:  #d24545;;
+        display: flex;
+        align-items: center;
+        z-index:100;
+     }
+     h1 {
+        margin: 0; padding: 0;
+        font-size: 20px;
+     }
+     a {   
+        text-decoration: none;
+        color: white;
+     }
+     nav {
+        margin: 0 0 0 auto;
+     }
+     ul {
+        list-style: none;
+        margin: 0;
+        display: flex;
+        padding:0;
+     }
+     li {
+        margin: 0 0 0 15px;
+        font-size: 14px;
+     }
+    
+     input[type="button"]{
+        width:150px;
+        background:#51bafb;
+        color:#fff;
+        font-size: 20px;
+        margin-bottom: 10px;
+     }
+     
+     input[type="button"]:hover{
+        background: blue;;
+     }
 
-
-
-/*今日*/
-
-
-/*週間*/
-/*
-.title{text-align; center}
-body{background: $bg-color; color; $clolr-letter;}
-*/
-
-
-/*横軸*/
-/*.num12{
-    position:absolute;
-    top:100px; left:10px;
-}
-.num9{
-    position:absolute;
-    top:200px; left:15px;
-}
-.num6{
-    position:absolute;
-    top:300px; left:15px;
-}
-.num3{
-    position:absolute;
-    top:400px; left:15px;
-}
-.num0{
-    position:absolute;
-    top:500px; left:15px;
-}
-.date0{
-    position:absolute;
-    top:30px; left:50px;
-}
-.date1{
-    position:absolute;
-    top:30px; left:100px;
-}
-.date2{
-    position:absolute;
-    top:30px; left:50px;
-}
-.date3{
-    position:absolute;
-    top:30px; left:100px;
-}
-.date4{
-    position:absolute;
-    top:30px; left:50px;
-}
-.date5{
-    position:absolute;
-    top:30px; left:100px;
-}
-.date6{
-    position:absolute;
-    top:30px; left:50px;
-}
-*/
-
-/*
-.box{
-    position: absolute;
-    display: block;
-    border: solid 4px blue;
-
-    width: 350px;
-    height: 400px;
-    background: none;
-    top:-370px; left:25px;
-
-}
-*/
-
-
-/*棒グラフ*/
-/*
-.graph-1{
-    position:absolute;
-    top: 0%;
-    left: 0%;
-    width: 1%;
-    height: 100%;
-    background-color: rgba(50,50,50,10);
-}
-.num-bar-0{
-    position:absolute;
-    top: calc(100px + 400px*(1 - var(eye_time) / 12) );
-    top: 0px;
-    left: 40px;
-    width: 30px;
-    height: 400px;
-    background-color:red;
-    animation: graph-1 3s -1;
-}
-.num-bar-1{
-    position:absolute;
-    top: 0%;
-    left: 82.5px;
-    width: 30px;
-    height: 100%;
-    background-color:orange;
-
-    animation: graph-1 3s -1;
-}
-.num-bar-2{
-    position:absolute;
-    top: 1%;
-    left: 125px;
-    width: 30px;
-    height: 100%;
-    background-color:#8cfffa;
-
-    animation: graph-1 3s -1;
-}
-.num-bar-3{
-    position:absolute;
-    top: 1%;
-    left: 165.5px;
-    width: 30px;
-    height: 100%;
-    background-color: rgba(224,247,150,1);
-
-    animation: graph-1 3s -1;
-}
-.num-bar-4{
-    position:absolute;
-    top: 1%;
-    left: 210px;
-    width: 30px;
-    height: 100%;
-    background-color: rgba(224,247,150,1);
-
-    animation: graph-1 3s -1;
-}
-.num-bar-5{
-    position:absolute;
-    top: 1%;
-    left: 252.5px;
-    width: 30px;
-    height: 100%;
-    background-color: rgba(224,247,150,1);
-
-    animation: graph-1 3s -1;
-}
-.num-bar-6{
-    position:absolute;
-    top: 1%;
-    left: 295px;
-    width: 30px;
-    height: 50%;
-    background-color: rgba(224,247,150,1);
-
-    animation: graph-1 3s -1;
-}
-*/
-
-/*******************************/
-
-
-
-/*今月*/
-.month{
-    top: 1000px;
-    left: 295px;
-    width: 100px;
-    height: 100%;
-
-    background-color:color;
-}
-
-
-/****************************************************************************************/
+    #chart_cv{
+        display: block;
+        width: 816px;
+        height: 406px;
+        border: 2px solid black;
+        background-color: white;
+    }
+    
+    /****************************************************************************************/
+    
+    
+    
