@@ -1,6 +1,1 @@
-config/.env
-config/hackathon-b-903ff-firebase-adminsdk-wtnrk-4db0db7113.json
-__pycache__/
-config/__pycache__/
-common/__pycache__/
-common/libs/__pycache__/
+*.DS_Store
