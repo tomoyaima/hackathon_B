@@ -58,6 +58,37 @@ def document_update(id, start_t, end_t):
         print('No such document!')
     return
 
+def update_slack_info(id, token, channels):
+    doc_ref = db.collection(u'users').document(id)
+    doc_ref.update({
+        u'slack_token'  : token,
+        u'channels'     : channels,
+    })
+
+def get_slack_apitoken(id):
+    doc_ref = db.collection(u'users').document(id)
+    try:
+        doc = doc_ref.get().to_dict()
+        if 'slack_token' in doc:
+            """slack_apiの情報があったら"""
+            return doc['slack_token']
+        else:
+            return False
+    except google.cloud.exceptions.NotFound:
+        print('No such document!')
+
+def get_slack_channels(id):
+    doc_ref = db.collection(u'users').document(id)
+    try:
+        doc = doc_ref.get().to_dict()
+        if 'channels' in doc:
+            """channelsの情報があったら"""
+            return doc['channels']
+        else:
+            return False
+    except google.cloud.exceptions.NotFound:
+        print('No such document!')
+
 def document_print(id):
     """documentのidの人の内容を出力"""
     doc_ref = db.collection(u'users').document(id)
