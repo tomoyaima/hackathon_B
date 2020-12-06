@@ -202,7 +202,7 @@ $(function(){
             console.log(data);
         });
               }, 'image/jpeg');
-          },1000);
+          },333);
       });
   });
   

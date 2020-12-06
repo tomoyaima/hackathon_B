@@ -10,7 +10,6 @@ import cv2
 import io
 from common.users import Users
 
-
 app = Flask(__name__, static_folder='html/static', template_folder='html/templates')
 users = Users()
 
@@ -69,18 +68,27 @@ def img(user_id):
 
     # pillow から opencvに変換
     imgPIL = Image.open(io.BytesIO(img))
-    imgCV = np.asarray(imgPIL)
-    # imgCV = cv2.bitwise_not(imgCV)
+    # imgCV = np.asarray(imgPIL)
+    imgCV = np.array(imgPIL, dtype=np.uint8)
+    imgCV = cv2.cvtColor(imgCV, cv2.COLOR_RGB2BGR)
     # cv2.imwrite('./test.jpg', imgCV)
+    # cv2.waitKey(1)
+    # imgCV = cv2.bitwise_not(imgCV)
 
     user.img_process(imgCV) # 画像処理部へ投げる
 
     if user.watching :
         result = 'true'
+        if user.concentration > 0:
+            return jsonify({'watching' : result, 'concentration' : user.concentration})
     else :
         result = 'false'
         if user.is_require_caution():
             """注意が必要ならjsonに警告レベルをくっつける"""
+            if user.caution_level == user.slack_caution_level:
+                # レベル5でslackで通報とかいう話もあった
+                user.slack_sabotage_notice()
+                pass
             return jsonify({'watching' : result, 'caution' : user.caution_level})
     return jsonify({'watching' : result})
 
