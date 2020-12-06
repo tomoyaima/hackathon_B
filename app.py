@@ -17,14 +17,14 @@ users = Users()
 @app.route('/')
 def main():
     #return name
-    return redirect(url_for('login'))
+    return redirect(url_for('login',_scheme='https',_external=True))
 
 @app.route('/stop/<user_id>')
 def stop(user_id):
     #return name
     user = users.get_user(user_id)
     user.end_watching()
-    return redirect(url_for("index",\
+    return redirect(url_for("index",_scheme='https',_external=True,\
         user_id = user_id))
 
 @app.route('/rank/<user_id>')

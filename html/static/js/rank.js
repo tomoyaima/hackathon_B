@@ -18,11 +18,10 @@ let i=0
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
-
+let audiostart = new Audio();
 document.addEventListener('DOMContentLoaded', function () {
-  // let audiostart = new Audio();
-  //   audiostart.src = "../static/music/ranking1.mp3";
-  //   audiostart.play(); // 再生v
+  
+   
     firebase.auth().onAuthStateChanged(function(user) {
      
         if (user) {
@@ -44,7 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
               table_tr+="</table>"
               console.log(table_tr)
               table.innerHTML =table_tr
-              
+              audiostart.src = "../static/music/ranking1.mp3";
+              audiostart.play(); 
              
         
             }).catch(error => {
