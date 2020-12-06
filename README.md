@@ -1,7 +1,7 @@
 # hackason_B
 富士通ハッカソン2020 Bチーム
 
-![SSS Home](images\sss_home.JPG)
+![sss_home](https://user-images.githubusercontent.com/25567283/101272747-880ac880-37d2-11eb-80fc-24ca67c544a4.JPG)
 
 ## 実行コマンド
 
