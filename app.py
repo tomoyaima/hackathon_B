@@ -1,7 +1,3 @@
-#pip install pillow
-# pip install "pandas<0.25.0"
-# pip install numpy
-
 from flask import Flask, render_template, url_for, redirect, request, Response, jsonify #追加
 from camera import VideoCamera 
 from PIL import Image
@@ -15,15 +11,22 @@ users = Users()
 
 @app.route('/')
 def main():
+     #リモート本番なら
     #return name
-    return redirect(url_for('login',_scheme='https',_external=True))
-
+    # return redirect(url_for('login',_scheme='https',_external=True))
+     # ローカルホストでなら
+     return redirect(url_for('login'))
+       
 @app.route('/stop/<user_id>')
 def stop(user_id):
     #return name
     user = users.get_user(user_id)
     user.end_watching()
-    return redirect(url_for("index",_scheme='https',_external=True,\
+    #リモートなら
+    # return redirect(url_for("index",_scheme='https',_external=True,\
+    #     user_id = user_id))
+        # ローカルホストでなら
+    return redirect(url_for("index",\
         user_id = user_id))
 
 @app.route('/rank/<user_id>')

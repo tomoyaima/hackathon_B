@@ -20,13 +20,13 @@ class User:
         self.detector_.frame_rate = self.image_frame_rate
         self.concentration = -1
 
-        self.slack_apitoken_ = get_slack_apitoken(id)
-        self.slack_channels_ = get_slack_channels(id)
-        self.have_slackbot_ = False
-        if self.slack_apitoken_ and self.slack_channels_:
-            self.slack_ = SlackBot(id, self.slack_apitoken_, self.slack_channels_)
-            self.have_slackbot_ = True
-        self.slack_caution_level = 5
+        # self.slack_apitoken_ = get_slack_apitoken(id)
+        # self.slack_channels_ = get_slack_channels(id)
+        # self.have_slackbot_ = False
+        # if self.slack_apitoken_ and self.slack_channels_:
+        #     self.slack_ = SlackBot(id, self.slack_apitoken_, self.slack_channels_)
+        #     self.have_slackbot_ = True
+        # self.slack_caution_level = 5
 
 
     def start_watching(self):
